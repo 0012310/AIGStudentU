@@ -11,6 +11,8 @@
     <string name="password_validation_message">Enter Password</string>
     <string name="no_internet_connection_available">Please check your internet connection.</string>
     <string name="Rs">\u20B9</string>
+    
+    <string name="file_text">Select Your File</string>
 
 
 </resources>
