@@ -1,0 +1,227 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.aig.advanceinnovationgroup.fragment.FeeDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_10">
+
+        <LinearLayout
+            android:id="@+id/ll_total_fee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/total_fee_bg">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Total Fee"
+            android:padding="@dimen/margin_10"
+            android:textColor="@color/white"/>
+
+            <ImageView
+                android:id="@+id/iv_total_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/next"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_gravity="center|right"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_total_fee_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_10">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1"
+                android:background="@color/btn_bg"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Total Course Fee"/>
+
+                <View
+                    android:layout_width="@dimen/margin_1"
+                    android:layout_height="40dp"
+                    android:background="@color/btn_bg"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Deposit Amount"/>
+
+                <View
+                    android:layout_width="@dimen/margin_1"
+                    android:layout_height="40dp"
+                    android:background="@color/btn_bg"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Due Amount"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1"
+                android:background="@color/btn_bg"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_course_fee"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+                <View
+                    android:layout_width="@dimen/margin_1"
+                    android:layout_height="40dp"
+                    android:background="@color/btn_bg"/>
+
+                <TextView
+                    android:id="@+id/tv_deposit_amount"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+                <View
+                    android:layout_width="@dimen/margin_1"
+                    android:layout_height="40dp"
+                    android:background="@color/btn_bg"/>
+
+                <TextView
+                    android:id="@+id/tv_due_amount"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1"
+                android:background="@color/btn_bg"
+                android:layout_marginBottom="@dimen/margin_10"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_deposit_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/deposit_fee_bg">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Deposit Details"
+                android:padding="@dimen/margin_10"
+                android:textColor="@color/btn_bg"/>
+
+            <ImageView
+                android:id="@+id/iv_deposit_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/next"
+                android:tint="@color/btn_bg"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_gravity="center|right"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/amount_fee_bg">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="On Date Overdue Amount Details"
+                android:padding="@dimen/margin_10"
+                android:textColor="@color/btn_bg"/>
+
+            <ImageView
+                android:id="@+id/iv_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/next"
+                android:tint="@color/btn_bg"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_gravity="center|right"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_due_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/due_amount_fee_bg">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="On Date Due Amount Details"
+                android:padding="@dimen/margin_10"
+                android:textColor="@color/btn_bg"/>
+
+            <ImageView
+                android:id="@+id/iv_due_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/next"
+                android:tint="@color/btn_bg"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_gravity="center|right"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:id="@+id/linearStart"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:weightSum="2.7">
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0">
+
+            <RelativeLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0">
+
+                <TextView
+                    android:textSize="13sp"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+
+            <View
+                android:background="@color/btn_bg"
+                android:layout_width="2dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textSize="13sp"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:id="@+id/tv_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/btn_bg"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.7">
+
+            <RelativeLayout
+                android:id="@+id/edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0">
+
+                <TextView
+                    android:id="@+id/tv_payment_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="31dip"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+            <View
+                android:background="@color/btn_bg"
+                android:layout_width="2dp"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:id="@+id/reminder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0">
+
+                <TextView
+                    android:id="@+id/tv_cheque_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="31dip"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+            <View
+                android:background="@color/btn_bg"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:id="@+id/complete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0">
+
+                <TextView
+                    android:id="@+id/tv_rct_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="31dip"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
