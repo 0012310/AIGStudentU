@@ -10,6 +10,7 @@ public class Constant {
 
     public static final String LOGIN_URL = BASE_URL+ "login";
     public static final String BLOG_URL = BASE_URL+ "blog";
+    public static final String ATTENDANCE_URL = BASE_URL+ "attendance";
     public static final String DOWNLOAD_URL = BASE_URL+ "downloads";
     public static final String TOTALFEEDETAIL_URL = BASE_URL+ "total_fee_details";
     public static final String DEPOSITDETAIL_URL = BASE_URL+ "deposit_fee_details";

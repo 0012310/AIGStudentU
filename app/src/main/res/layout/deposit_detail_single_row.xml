@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/ll_deposit"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -19,21 +19,24 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0">
+            android:layout_weight="1.5">
 
             <RelativeLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.0">
+                android:layout_weight="1.1">
 
                 <TextView
-                    android:textSize="13sp"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:id="@+id/tv_date"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    android:text="Date"
+                    android:id="@+id/tv_date"
+                    android:textSize="@dimen/text_size_15" />
 
             </RelativeLayout>
 
@@ -44,12 +47,12 @@
 
             <TextView
                 android:textSize="13sp"
-                android:textColor="#fff"
                 android:gravity="center"
                 android:id="@+id/tv_amount"
+                android:text="Amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.0" />
+                android:layout_weight="1.43" />
 
         </LinearLayout>
 
@@ -62,7 +65,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.7">
+            android:layout_weight="1">
 
             <RelativeLayout
                 android:id="@+id/edit"
@@ -73,7 +76,9 @@
                 <TextView
                     android:id="@+id/tv_payment_mode"
                     android:layout_width="wrap_content"
-                    android:layout_height="31dip"
+                    android:layout_height="wrap_content"
+                    android:text="Payment\n Mode"
+                    android:gravity="center"
                     android:layout_centerInParent="true" />
 
             </RelativeLayout>
@@ -92,7 +97,9 @@
                 <TextView
                     android:id="@+id/tv_cheque_no"
                     android:layout_width="wrap_content"
-                    android:layout_height="31dip"
+                    android:layout_height="wrap_content"
+                    android:text="Cheque\n No."
+                    android:gravity="center"
                     android:layout_centerInParent="true" />
 
             </RelativeLayout>
@@ -111,11 +118,19 @@
                 <TextView
                     android:id="@+id/tv_rct_no"
                     android:layout_width="wrap_content"
-                    android:layout_height="31dip"
+                    android:layout_height="wrap_content"
+                    android:text="Rct \nNo."
+                    android:gravity="center"
                     android:layout_centerInParent="true" />
 
             </RelativeLayout>
 
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_1"
+        android:background="@color/btn_bg"/>
+
+
 </LinearLayout>

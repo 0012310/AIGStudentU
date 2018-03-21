@@ -5,11 +5,16 @@
     android:orientation="vertical"
     tools:context="com.aig.advanceinnovationgroup.fragment.FeeDetailFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/margin_10">
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_35">
 
         <LinearLayout
             android:id="@+id/ll_total_fee"
@@ -172,6 +177,152 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/ll_deposit"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:id="@+id/linearStart"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:weightSum="2.7">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5">
+
+                    <RelativeLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center"
+                            android:text="Date"
+                            android:textSize="@dimen/text_size_15" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:background="@color/btn_bg"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:id="@+id/tv_amount"
+                        android:text="Amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.43" />
+
+                </LinearLayout>
+
+                <View
+                    android:background="@color/btn_bg"
+                    android:layout_width="2dp"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:id="@+id/edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0">
+
+                        <TextView
+                            android:id="@+id/tv_payment_mode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Payment\n Mode"
+                            android:gravity="center"
+                            android:layout_centerInParent="true" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:background="@color/btn_bg"
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:id="@+id/reminder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0">
+
+                        <TextView
+                            android:id="@+id/tv_cheque_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cheque\n No."
+                            android:gravity="center"
+                            android:layout_centerInParent="true" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:background="@color/btn_bg"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:id="@+id/complete"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0">
+
+                        <TextView
+                            android:id="@+id/tv_rct_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rct \nNo."
+                            android:gravity="center"
+                            android:layout_centerInParent="true" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1"
+                android:background="@color/btn_bg"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_deposit">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+
         <LinearLayout
             android:id="@+id/ll_amount"
             android:layout_width="match_parent"
@@ -195,6 +346,61 @@
                 android:tint="@color/btn_bg"
                 android:layout_marginRight="@dimen/margin_10"
                 android:layout_gravity="center|right"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_amount_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_10">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1"
+                android:background="@color/btn_bg"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Date"/>
+
+                <View
+                    android:layout_width="@dimen/margin_1"
+                    android:layout_height="40dp"
+                    android:background="@color/btn_bg"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="amount"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1"
+                android:background="@color/btn_bg"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_amount">
+
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 
@@ -224,4 +430,6 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
