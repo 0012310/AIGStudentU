@@ -186,8 +186,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
                     REQUEST_PICK_FILE);
         } catch (android.content.ActivityNotFoundException ex) {
             // Potentially direct the user to the Market with a Dialog
-            Toast.makeText(getActivity(), "Please install a File Manager.",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please install a File Manager.", Toast.LENGTH_SHORT).show();
         }
 
     }
