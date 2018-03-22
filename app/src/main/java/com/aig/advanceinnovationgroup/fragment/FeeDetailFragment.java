@@ -59,7 +59,6 @@ public class FeeDetailFragment extends Fragment implements View.OnClickListener 
     private List<DepositFeeDetail> depositFeeDetailList;
     private List<OverdueFeeDetail> overDueAmountList;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -16,4 +16,6 @@ public class Constant {
     public static final String DEPOSITDETAIL_URL = BASE_URL+ "deposit_fee_details";
     public static final String AMOUNT_URL = BASE_URL+ "overdue_fee_details";
     public static final String DUEAMOUNT_URL = BASE_URL+ "due_fee_details";
+    public static final String PROJECTTYPE_URL = BASE_URL+ "project_type";
+    public static final String PROJECTDETAIL_URL = BASE_URL+"project_details";
 }
