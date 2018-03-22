@@ -26,17 +26,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aig.advanceinnovationgroup.R;
-import com.aig.advanceinnovationgroup.adapter.AttendanceAdapter;
-import com.aig.advanceinnovationgroup.model.AttendanceData;
-import com.aig.advanceinnovationgroup.model.AttendanceDetail;
 import com.aig.advanceinnovationgroup.model.ProjectType;
 import com.aig.advanceinnovationgroup.model.ProjectTypeData;
 import com.aig.advanceinnovationgroup.util.AppController;
-import com.aig.advanceinnovationgroup.util.AppPreferences;
 import com.aig.advanceinnovationgroup.util.Constant;
-import com.aig.advanceinnovationgroup.util.Filepath;
 import com.aig.advanceinnovationgroup.util.Utils;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -45,13 +39,9 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.StringReader;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -73,8 +63,6 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
     String selectedImagePath = "";
 
     private File selectedFile;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -161,10 +149,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
                         }
                     };
                     projectTypeSP.setAdapter(spinnerArrayAdapter);
-
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override
