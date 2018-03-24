@@ -23,13 +23,8 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initUi() {
-        mProgress = (ProgressBar) findViewById(R.id.splash_screen_progress_bar);
         // Start lengthy operation in a background thread
-
                 doWork();
-
-
-
     }
 
     @Override

@@ -83,10 +83,6 @@
             android:layout_height="wrap_content"
             android:maxLines="5"/>
 
-
-
-
-
             <LinearLayout
                 android:id="@+id/single_ll"
                 android:layout_width="match_parent"

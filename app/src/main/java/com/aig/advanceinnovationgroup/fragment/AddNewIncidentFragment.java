@@ -61,6 +61,9 @@ public class AddNewIncidentFragment extends Fragment implements View.OnClickList
     private List<DaysList> daysLists;
     private ArrayList<String> dayList;
     private ArrayList<String> dayListId;
+    List<EditText> allEds;
+    List<EditText> startTime;
+    List<EditText> endTime;
 
     private int mposition;
     private String subject;
@@ -68,6 +71,7 @@ public class AddNewIncidentFragment extends Fragment implements View.OnClickList
     private LinearLayout single_ll;
     private Button addIncidentBT;
     private EditText dateET;
+    private String[] strings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,10 @@ public class AddNewIncidentFragment extends Fragment implements View.OnClickList
         daysLists = new ArrayList<>();
         dayList = new ArrayList<>();
         dayListId = new ArrayList<>();
+
+        allEds = new ArrayList<EditText>();
+        startTime = new ArrayList<EditText>();
+        endTime = new ArrayList<EditText>();
 
     }
 
@@ -125,7 +133,6 @@ public class AddNewIncidentFragment extends Fragment implements View.OnClickList
                 JsonReader reader = new JsonReader(new StringReader(response));
                 reader.setLenient(true);
                 StaffData staffData = gson.fromJson(reader, StaffData.class);
-//                AttendanceData attendanceData = new Gson().fromJson(response, AttendanceData.class);
                 int status = staffData.getStatus();
                 if (status==1) {
                     staffDetailList = staffData.getStaffDetails();
@@ -356,6 +363,7 @@ public class AddNewIncidentFragment extends Fragment implements View.OnClickList
         }
     };
 
+    private EditText startTimeET, endTimeET;
     private AdapterView.OnItemSelectedListener days_listener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -366,9 +374,15 @@ public class AddNewIncidentFragment extends Fragment implements View.OnClickList
                 for (int i = 0; i < days; i++) {
                     final View child = getLayoutInflater().inflate(R.layout.single_item_view, null);
                     dateET = (EditText) child.findViewById(R.id.et_date);
-
+                    startTimeET = (EditText) child.findViewById(R.id.et_start_time);
+                    endTimeET = (EditText) child.findViewById(R.id.et_end_time);
+                    allEds.add(dateET);
+                    startTime.add(startTimeET);
+                    endTime.add(endTimeET);
 
                     single_ll.addView(child);
+
+
                 }
             }
 
@@ -385,7 +399,28 @@ public class AddNewIncidentFragment extends Fragment implements View.OnClickList
     public void onClick(View v) {
      switch (v.getId()){
          case R.id.btn_add_incident:
-             Toast.makeText(getActivity(), dateET.getText().toString(), Toast.LENGTH_SHORT).show();
+
+             StringBuilder commaSepValueBuilder = new StringBuilder();
+             StringBuilder startTimeValueBuilder = new StringBuilder();
+             StringBuilder endTimeValueBuilder = new StringBuilder();
+             for(int i=0; i < allEds.size(); i++){
+                 commaSepValueBuilder.append(allEds.get(i).getText().toString());
+                 startTimeValueBuilder.append(startTime.get(i).getText().toString());
+                 endTimeValueBuilder.append(endTime.get(i).getText().toString());
+
+                 if ( i != allEds.size()-1){
+                     commaSepValueBuilder.append(", ");
+                 }
+                 if ( i != startTime.size()-1){
+                     startTimeValueBuilder.append(", ");
+                 }
+                 if ( i != endTime.size()-1){
+                     endTimeValueBuilder.append(", ");
+                 }
+             }
+             Toast.makeText(getActivity(),  commaSepValueBuilder.toString(), Toast.LENGTH_SHORT).show();
+             Toast.makeText(getActivity(),  startTimeValueBuilder.toString(), Toast.LENGTH_SHORT).show();
+             Toast.makeText(getActivity(),  endTimeValueBuilder.toString(), Toast.LENGTH_SHORT).show();
      }
     }
 }
