@@ -18,4 +18,7 @@ public class Constant {
     public static final String DUEAMOUNT_URL = BASE_URL+ "due_fee_details";
     public static final String PROJECTTYPE_URL = BASE_URL+ "project_type";
     public static final String PROJECTDETAIL_URL = BASE_URL+"project_details";
+    public static final String INCIDENT_URL = BASE_URL+"incident_subject";
+    public static final String STAFF_URL = BASE_URL+"incident_staff";
+    public static final String SELECT_DAY_URL = BASE_URL+"days_dropdown";
 }

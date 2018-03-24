@@ -5,6 +5,11 @@
     android:orientation="vertical"
     tools:context="com.aig.advanceinnovationgroup.fragment.AddNewProjectFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_10">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,10 +24,11 @@
             android:layout_marginBottom="@dimen/margin_10"
             android:textSize="@dimen/margin_15"/>
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sp_incident_subject"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,11 +39,35 @@
             android:layout_marginBottom="@dimen/margin_10"
             android:textSize="@dimen/margin_15"/>
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sp_staff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/ll_select_day"
+            android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Days"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:textSize="@dimen/margin_15"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/sp_select_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"/>
+
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +83,22 @@
             android:layout_height="wrap_content"
             android:maxLines="5"/>
 
+
+
+
+
+            <LinearLayout
+                android:id="@+id/single_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/margin_5">
+
+            </LinearLayout>
+
+
         <Button
+            android:id="@+id/btn_add_incident"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Incident"
@@ -65,4 +110,6 @@
             android:background="@drawable/button_bg"/>
 
     </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

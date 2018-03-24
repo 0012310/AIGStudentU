@@ -1,0 +1,61 @@
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_10"
+    card_view:cardElevation="2dp"
+    card_view:cardCornerRadius="2dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+       android:text="Class Date :"/>
+
+
+   <EditText
+       android:id="@+id/et_date"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Select Date"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="Start Time :"/>
+
+
+    <EditText
+        android:id="@+id/et_start_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Date"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="End Time :"/>
+
+
+    <EditText
+        android:id="@+id/et_end_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Date"/>
+
+</LinearLayout>
+</android.support.v7.widget.CardView>

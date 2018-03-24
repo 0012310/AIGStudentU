@@ -1,18 +1,12 @@
 package com.aig.advanceinnovationgroup.fragment;
 
-import android.Manifest;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
 import android.util.Log;
@@ -95,7 +89,6 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
 
         browseBT.setOnClickListener(this);
     }
-
 
     public void projectTypeData(){
         mProgressDialog = Utils.showProgressDialog(getActivity());
@@ -203,12 +196,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
                     "Sorry! Failed to capture file", Toast.LENGTH_SHORT)
                     .show();
         }
-
-
     }
-
-
-
 
     @Override
     public void onClick(View v) {
