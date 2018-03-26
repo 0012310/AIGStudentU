@@ -226,30 +226,30 @@ public class FeeDetailFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.ll_total_fee:
-                if(totalFee){
-                    totalFeeIV.setImageResource(R.mipmap.down_arrow);
-                    totalFeeDetailLL.setVisibility(View.VISIBLE);
-                    feeDetailData();
-                    totalFee = false;
-                }else {
-                    totalFeeIV.setImageResource(R.mipmap.next);
-                    totalFeeDetailLL.setVisibility(View.GONE);
-                    totalFee = true;
-                }
-                break;
-            case R.id.ll_deposit_details:
-                if(deposit){
-                    depositDetailIV.setImageResource(R.mipmap.down_arrow);
-                    depositLL.setVisibility(View.VISIBLE);
-                    depositDetailData();
-                    deposit = false;
-                }else {
-                    depositDetailIV.setImageResource(R.mipmap.next);
-                    depositLL.setVisibility(View.GONE);
-                    deposit = true;
-                }
-                break;
+                case R.id.ll_total_fee:
+                    if(totalFee){
+                        totalFeeIV.setImageResource(R.mipmap.down_arrow);
+                        totalFeeDetailLL.setVisibility(View.VISIBLE);
+                        feeDetailData();
+                        totalFee = false;
+                    }else {
+                        totalFeeIV.setImageResource(R.mipmap.next);
+                        totalFeeDetailLL.setVisibility(View.GONE);
+                        totalFee = true;
+                    }
+                    break;
+                case R.id.ll_deposit_details:
+                    if(deposit){
+                        depositDetailIV.setImageResource(R.mipmap.down_arrow);
+                        depositLL.setVisibility(View.VISIBLE);
+                        depositDetailData();
+                        deposit = false;
+                    }else {
+                        depositDetailIV.setImageResource(R.mipmap.next);
+                        depositLL.setVisibility(View.GONE);
+                        deposit = true;
+                    }
+                    break;
             case R.id.ll_amount:
                 if(amount){
                     amountIV.setImageResource(R.mipmap.down_arrow);

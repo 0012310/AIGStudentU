@@ -20,5 +20,10 @@ public class Constant {
     public static final String PROJECTDETAIL_URL = BASE_URL+"project_details";
     public static final String INCIDENT_URL = BASE_URL+"incident_subject";
     public static final String STAFF_URL = BASE_URL+"incident_staff";
+    public static final String ADDPROJECT_URL = BASE_URL+"add_incident";
     public static final String SELECT_DAY_URL = BASE_URL+"days_dropdown";
+    public static final String TIME_URL = BASE_URL+"incident_time";
+    public static final String INCIDENT_VIEW_URL = BASE_URL+"incident_view";
+    public static final String INCIDENT_VIEW_MESSAGE_URL = BASE_URL+"incident_view_message";
+    public static final String INCIDENT_TRAINER_URL = BASE_URL+"view_incident_trainer";
 }
