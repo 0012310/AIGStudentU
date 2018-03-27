@@ -26,4 +26,5 @@ public class Constant {
     public static final String INCIDENT_VIEW_URL = BASE_URL+"incident_view";
     public static final String INCIDENT_VIEW_MESSAGE_URL = BASE_URL+"incident_view_message";
     public static final String INCIDENT_TRAINER_URL = BASE_URL+"view_incident_trainer";
+    public static final String PERSONAL_DETAIL_URL = BASE_URL+"view_personal_details";
 }

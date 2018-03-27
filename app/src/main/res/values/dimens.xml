@@ -37,6 +37,7 @@
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_12">12dp</dimen>
     <dimen name="margin_15">15dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
     <dimen name="padding_15">15dp</dimen>
     <dimen name="margin_18">18dp</dimen>
     <dimen name="margin_20">20dp</dimen>
