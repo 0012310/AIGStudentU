@@ -2,15 +2,19 @@ package com.aig.advanceinnovationgroup.activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.model.PersonalDetailData;
@@ -26,6 +30,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,13 +41,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class EditPersonalDetailActivity extends AppCompatActivity {
+public class EditPersonalDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     private EditText  fullNameET, dobET, genderET, contactNumberET, emailET, matarialStatusET, addressET, stateET, countryET;
     private Dialog mProgressDialog;
     private List<ProfileDetail> profileDetailList;
     private Calendar myCalendar;
+    private Button updateBT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +74,9 @@ public class EditPersonalDetailActivity extends AppCompatActivity {
         addressET = (EditText) findViewById(R.id.et_address);
         stateET = (EditText) findViewById(R.id.et_state);
         countryET = (EditText) findViewById(R.id.et_country);
+        updateBT = (Button) findViewById(R.id.btn_update);
+
+        updateBT.setOnClickListener(this);
 
         myCalendar = Calendar.getInstance();
 
@@ -97,6 +108,41 @@ public class EditPersonalDetailActivity extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        genderET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu dropDownMenu = new PopupMenu(EditPersonalDetailActivity.this, genderET);
+                dropDownMenu.getMenuInflater().inflate(R.menu.gender_menu, dropDownMenu.getMenu());
+                dropDownMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        genderET.setText(menuItem.getTitle());
+                        return true;
+                    }
+                });
+                dropDownMenu.show();
+            }
+        });
+
+        matarialStatusET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu dropDownMenu = new PopupMenu(EditPersonalDetailActivity.this, matarialStatusET);
+                dropDownMenu.getMenuInflater().inflate(R.menu.maital_menu, dropDownMenu.getMenu());
+                dropDownMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        matarialStatusET.setText(menuItem.getTitle());
+                       // Toast.makeText(EditPersonalDetailActivity.this, "You have clicked " + menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        return true;
+                    }
+                });
+                dropDownMenu.show();
             }
         });
 
@@ -159,6 +205,64 @@ public class EditPersonalDetailActivity extends AppCompatActivity {
     }
 
 
+    public void editpersonalDetailData(){
+        mProgressDialog = Utils.showProgressDialog(EditPersonalDetailActivity.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.EDIT_PERSONAL_DETAIL_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("Response :", response);
+                Utils.cancelProgressDialog(mProgressDialog);
+
+                try {
+                    JSONObject object = new JSONObject(response);
+
+                    Toast.makeText(EditPersonalDetailActivity.this, object.getString("update_profile_detail"), Toast.LENGTH_SHORT).show();
+                    Intent intent  = new Intent(EditPersonalDetailActivity.this, PersonalDetailsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.cancelProgressDialog(mProgressDialog);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> param = new HashMap<>();
+                param.put("student_id", AppPreferences.getString(EditPersonalDetailActivity.this, AppPreferences.PREF_KEY.STUDENT_ID));
+                param.put("full_name", fullNameET.getText().toString());
+                param.put("contact_no", contactNumberET.getText().toString());
+                param.put("email", emailET.getText().toString());
+                param.put("address", addressET.getText().toString());
+                if (genderET.getText().toString().equalsIgnoreCase("Male")) {
+                    param.put("gender", "1");
+                }else if (genderET.getText().toString().equalsIgnoreCase("Female")){
+                    param.put("gender", "2");
+                }
+                param.put("dob", dobET.getText().toString());
+                param.put("state", stateET.getText().toString());
+                if (matarialStatusET.getText().toString().equalsIgnoreCase("Married")){
+                    param.put("marital_status", "1");
+                }else if (matarialStatusET.getText().toString().equalsIgnoreCase("Unmarried")){
+                    param.put("marital_status", "2");
+
+                }
+                param.put("country", countryET.getText().toString());
+                return param;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
+
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -167,5 +271,13 @@ public class EditPersonalDetailActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_update:
+                editpersonalDetailData();
+        }
     }
 }
