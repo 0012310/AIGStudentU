@@ -1,14 +1,14 @@
 package com.aig.advanceinnovationgroup.activity;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -26,24 +26,26 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
-public class PersonalDetailsActivity extends AppCompatActivity {
+public class EditPersonalDetailActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView  dobET, genderET, contactNumberET, emailET, matarialStatusET, addressET, stateET, countryET;
-    private TextView fullNameET;
+    private EditText  fullNameET, dobET, genderET, contactNumberET, emailET, matarialStatusET, addressET, stateET, countryET;
     private Dialog mProgressDialog;
     private List<ProfileDetail> profileDetailList;
+    private Calendar myCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_details);
-
+        setContentView(R.layout.activity_edit_personal_detail);
         profileDetailList = new ArrayList<>();
         initView();
         personalDetailData();
@@ -53,22 +55,55 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Personal Detail");
+        getSupportActionBar().setTitle("Edit Personal Detail");
 
-        fullNameET = (TextView) findViewById(R.id.et_full_name);
-        dobET = (TextView) findViewById(R.id.et_date_of_birth);
-        genderET = (TextView) findViewById(R.id.et_gender);
-        contactNumberET = (TextView) findViewById(R.id.et_contact_number);
-        emailET = (TextView) findViewById(R.id.et_email);
-        matarialStatusET = (TextView) findViewById(R.id.et_marital_status);
-        addressET = (TextView) findViewById(R.id.et_address);
-        stateET = (TextView) findViewById(R.id.et_state);
-        countryET = (TextView) findViewById(R.id.et_country);
+        fullNameET = (EditText) findViewById(R.id.et_full_name);
+        dobET = (EditText) findViewById(R.id.et_dob);
+        genderET = (EditText) findViewById(R.id.et_gender);
+        contactNumberET = (EditText) findViewById(R.id.et_contact);
+        emailET = (EditText) findViewById(R.id.et_email);
+        matarialStatusET = (EditText) findViewById(R.id.et_marital_status);
+        addressET = (EditText) findViewById(R.id.et_address);
+        stateET = (EditText) findViewById(R.id.et_state);
+        countryET = (EditText) findViewById(R.id.et_country);
+
+        myCalendar = Calendar.getInstance();
+
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                String myFormat = "yyyy-MM-dd"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                Log.d("date :",sdf.format(myCalendar.getTime()));
+
+                dobET.setText(sdf.format(myCalendar.getTime()));
+
+            }
+
+        };
+        dobET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new DatePickerDialog(EditPersonalDetailActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+
+
+            }
+        });
 
     }
 
     public void personalDetailData(){
-        mProgressDialog = Utils.showProgressDialog(PersonalDetailsActivity.this);
+        mProgressDialog = Utils.showProgressDialog(EditPersonalDetailActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.PERSONAL_DETAIL_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -114,7 +149,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> param = new HashMap<>();
-                param.put("student_id", AppPreferences.getString(PersonalDetailsActivity.this, AppPreferences.PREF_KEY.STUDENT_ID));
+                param.put("student_id", AppPreferences.getString(EditPersonalDetailActivity.this, AppPreferences.PREF_KEY.STUDENT_ID));
 
                 return param;
             }
@@ -123,22 +158,12 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_edit, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
-                return true;
-            case R.id.edit:
-                Intent intent = new Intent(PersonalDetailsActivity.this, EditPersonalDetailActivity.class);
-                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

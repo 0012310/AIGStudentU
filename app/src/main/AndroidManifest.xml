@@ -48,7 +48,9 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".activity.ArticlesActivity" />
         <activity android:name=".activity.ViewBlogDetailActivity" />
-        <activity android:name=".activity.PersonalDetailsActivity"></activity>
+        <activity android:name=".activity.PersonalDetailsActivity" />
+        <activity android:name=".activity.ProfileSummaryActivity" />
+        <activity android:name=".activity.EditPersonalDetailActivity"></activity>
     </application>
 
 </manifest>
