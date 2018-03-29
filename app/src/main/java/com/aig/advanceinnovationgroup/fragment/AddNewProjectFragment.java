@@ -1,9 +1,11 @@
 package com.aig.advanceinnovationgroup.fragment;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,10 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aig.advanceinnovationgroup.R;
+import com.aig.advanceinnovationgroup.adapter.CustomAdapter;
 import com.aig.advanceinnovationgroup.model.ProjectType;
 import com.aig.advanceinnovationgroup.model.ProjectTypeData;
+import com.aig.advanceinnovationgroup.util.AndroidMultiPartEntity;
 import com.aig.advanceinnovationgroup.util.AppController;
+import com.aig.advanceinnovationgroup.util.AppPreferences;
 import com.aig.advanceinnovationgroup.util.Constant;
+import com.aig.advanceinnovationgroup.util.Filepath;
 import com.aig.advanceinnovationgroup.util.Utils;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -32,7 +39,19 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+
 import java.io.File;
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +74,8 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
 
     private Uri fileUri;
     String selectedImagePath = "";
+    long totalSize = 0;
+    private String project_type_id;
 
     private File selectedFile;
 
@@ -88,6 +109,8 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
         addProjectBT = (Button) view.findViewById(R.id.btn_add_project);
 
         browseBT.setOnClickListener(this);
+        addProjectBT.setOnClickListener(this);
+        projectTypeSP.setOnItemSelectedListener(type_listner);
     }
 
     public void projectTypeData(){
@@ -154,10 +177,9 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
     }
 
     private void showFileChooser() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-
+        Intent intent = new Intent();
+        intent.setType("file/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
         try {
             startActivityForResult(
                     Intent.createChooser(intent, "Select a File to Upload"),
@@ -173,10 +195,8 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_PICK_FILE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri selectedImageUri = data.getData();
+            Uri selectedImageUri = Uri.fromFile(new File(Utils.getFilePath()));
             try {
-                Log.d("file :", selectedImageUri.getScheme());
-                Log.d("file :", selectedImageUri.getPath());
                 selectedImagePath = selectedImageUri.getPath();
                 String filename = selectedImagePath.substring(selectedImagePath.lastIndexOf("/") + 1).replaceAll("%20", " ");;
                 fileNameET.setText(filename);
@@ -198,12 +218,148 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
         }
     }
 
+
+
+    /**
+     * Uploading the file to server
+     * */
+    private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
+
+        String selectfile;
+
+        @Override
+
+        protected void onPreExecute() {
+            // setting progress bar to zero
+            // progressBar.setProgress(0);
+
+        //    pd = ProgressDialog.show(getActivity(), "","Please Wait...", true);
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            // Making progress bar visible
+//            progressBar.setVisibility(View.VISIBLE);
+//
+//            // updating progress bar value
+//            progressBar.setProgress(progress[0]);
+//
+//            // updating percentage value
+//            txtPercentage.setText(String.valueOf(progress[0]) + "%");
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            return uploadFile();
+
+        }
+
+        @SuppressWarnings("deprecation")
+        private String uploadFile() {
+            String responseString = null;
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(Constant.ADDPROJECT_URL);
+
+            try {
+                AndroidMultiPartEntity entity = new AndroidMultiPartEntity(new AndroidMultiPartEntity.ProgressListener() {
+
+                    @Override
+                    public void transferred(long num) {
+                        publishProgress((int) ((num / (float) totalSize) * 100));
+                    }
+                });
+
+                System.out.println("imagePath : " +selectedImagePath);
+
+                if (selectedImagePath!=null) {
+                    File sourceFile = new File(selectedImagePath);
+
+                    // Adding file data to http body
+                    entity.addPart("project_file", new FileBody(sourceFile));
+                }
+
+                // Extra parameters if you want to pass to server
+                entity.addPart("project_name", new StringBody(projectNameET.getText().toString()));
+                entity.addPart("project_description", new StringBody(projectDescriptionET.getText().toString()));
+                entity.addPart("project_type", new StringBody(project_type_id));
+                entity.addPart("trainer_id", new StringBody("2"));
+                entity.addPart("student_id",new StringBody(AppPreferences.getString(getActivity(), AppPreferences.PREF_KEY.STUDENT_ID)));
+
+
+
+                totalSize = entity.getContentLength();
+                httppost.setEntity(entity);
+
+                System.out.println(httppost + "aa");
+                // Making server call
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity r_entity = response.getEntity();
+
+                int statusCode = response.getStatusLine().getStatusCode();
+                if (statusCode == 200) {
+                    // Server response
+                    responseString = EntityUtils.toString(r_entity);
+                } else {
+                    responseString = "Error occurred! Http Status Code: "
+                            + statusCode;
+                }
+
+            } catch (ClientProtocolException e) {
+                responseString = e.toString();
+            } catch (IOException e) {
+                responseString = e.toString();
+            }
+
+            return responseString;
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.e("", "Response from server: " + result);
+
+            super.onPostExecute(result);
+        }
+
+    }
+
+
+    private AdapterView.OnItemSelectedListener type_listner = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            if (position>0){
+                project_type_id = projectListId.get(position);
+                Log.d("id : ", project_type_id);
+
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+
+
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_browse:
                 showFileChooser();
                 break;
+            case R.id.btn_add_project:
+                new UploadFileToServer().execute();
+                break;
+
         }
     }
 }

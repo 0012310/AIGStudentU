@@ -1,13 +1,16 @@
 package com.aig.advanceinnovationgroup.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aig.advanceinnovationgroup.R;
+import com.aig.advanceinnovationgroup.activity.ViewProjectDetailActivity;
 import com.aig.advanceinnovationgroup.model.DepositFeeDetail;
 import com.aig.advanceinnovationgroup.model.ProjectView;
 
@@ -38,11 +41,19 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
     @Override
     public void onBindViewHolder(DepositViewHolder holder, int position) {
 
-        ProjectView projectView = projectViewList.get(position);
+        final ProjectView projectView = projectViewList.get(position);
 
         holder.titleTV.setText(projectView.getProjectName()+" "+projectView.getPstatus());
         holder.startDateTV.setText(projectView.getPStartDate());
         holder.endDateTV.setText(projectView.getPCloseDate());
+        holder.projectLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ViewProjectDetailActivity.class);
+                intent.putExtra("project_id", projectView.getProjectId());
+                context.startActivity(intent);
+            }
+        });
 
 
     }
@@ -55,6 +66,7 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
     public class DepositViewHolder extends RecyclerView.ViewHolder {
 
         private TextView titleTV, startDateTV, endDateTV;
+        private LinearLayout projectLL;
 
         public DepositViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +74,7 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
             titleTV = (TextView) itemView.findViewById(R.id.tv_title);
             startDateTV = (TextView) itemView.findViewById(R.id.tv_start_date);
             endDateTV = (TextView) itemView.findViewById(R.id.tv_end_date);
+            projectLL = (LinearLayout) itemView.findViewById(R.id.ll_project);
 
         }
     }

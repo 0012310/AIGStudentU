@@ -416,7 +416,7 @@ public class AddNewIncidentFragment extends Fragment implements View.OnClickList
     public void addProjectData(){
 
         mProgressDialog = Utils.showProgressDialog(getActivity());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.ADDPROJECT_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.ADDINCIDENT_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

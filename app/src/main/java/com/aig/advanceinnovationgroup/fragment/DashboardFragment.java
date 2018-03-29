@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import com.aig.advanceinnovationgroup.activity.ArticlesActivity;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 
-    private LinearLayout ll_article, ll_discussion, ll_project, ll_video, ll_job;
+    private CardView cv_article, cv_discussion, cv_project, cv_video, cv_job;
 
 
     @Override
@@ -37,43 +38,43 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initView(View view) {
-        ll_article = (LinearLayout) view.findViewById(R.id.ll_article);
-        ll_discussion = (LinearLayout) view.findViewById(R.id.ll_discussion);
-        ll_project = (LinearLayout) view.findViewById(R.id.ll_project);
-        ll_video = (LinearLayout) view.findViewById(R.id.ll_video);
-        ll_job = (LinearLayout) view.findViewById(R.id.ll_job);
+        cv_article = (CardView) view.findViewById(R.id.cv_articles);
+        cv_discussion = (CardView) view.findViewById(R.id.cv_discussion);
+        cv_project = (CardView) view.findViewById(R.id.cv_project);
+        cv_video = (CardView) view.findViewById(R.id.cv_video);
+        cv_job = (CardView) view.findViewById(R.id.cv_job);
 
-        ll_article.setOnClickListener(this);
-        ll_discussion.setOnClickListener(this);
-        ll_project.setOnClickListener(this);
-        ll_video.setOnClickListener(this);
-        ll_job.setOnClickListener(this);
+        cv_article.setOnClickListener(this);
+        cv_discussion.setOnClickListener(this);
+        cv_project.setOnClickListener(this);
+        cv_video.setOnClickListener(this);
+        cv_job.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.ll_article:
+            case R.id.cv_articles:
                 Intent intent = new Intent(getActivity(), ArticlesActivity.class);
                 intent.putExtra("article", "article");
                 startActivity(intent);
                 break;
-            case R.id.ll_discussion:
+            case R.id.cv_discussion:
                 Intent intent1 = new Intent(getActivity(), ArticlesActivity.class);
                 intent1.putExtra("article", "discussion");
                 startActivity(intent1);
                 break;
-            case R.id.ll_project:
+            case R.id.cv_project:
                 Intent intent2 = new Intent(getActivity(), ArticlesActivity.class);
                 intent2.putExtra("article", "project");
                 startActivity(intent2);
                 break;
-            case R.id.ll_video:
+            case R.id.cv_video:
                 Intent intent3 = new Intent(getActivity(), ArticlesActivity.class);
                 intent3.putExtra("article", "video");
                 startActivity(intent3);
                 break;
-            case R.id.ll_job:
+            case R.id.cv_job:
                 Intent intent4 = new Intent(getActivity(), ArticlesActivity.class);
                 intent4.putExtra("article", "job");
                 startActivity(intent4);

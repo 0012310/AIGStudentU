@@ -8,6 +8,8 @@ import android.view.Window;
 
 import com.aig.advanceinnovationgroup.R;
 
+import java.io.File;
+
 /**
  * Created by admin on 3/16/2018.
  */
@@ -46,6 +48,15 @@ public class Utils {
         }
     }
 
+
+    public static String getFilePath() {
+        File file = new File("AIG");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        String uriSting = (file.getAbsolutePath() + "/" + System.currentTimeMillis());
+        return uriSting;
+    }
 
 
 

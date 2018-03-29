@@ -17,10 +17,12 @@ public class Constant {
     public static final String AMOUNT_URL = BASE_URL+ "overdue_fee_details";
     public static final String DUEAMOUNT_URL = BASE_URL+ "due_fee_details";
     public static final String PROJECTTYPE_URL = BASE_URL+ "project_type";
+    public static final String ADDPROJECT_URL = BASE_URL+ "add_project";
     public static final String PROJECTDETAIL_URL = BASE_URL+"project_details";
+    public static final String PROJECTVIEWDETAIL_URL = BASE_URL+"project_view";
     public static final String INCIDENT_URL = BASE_URL+"incident_subject";
     public static final String STAFF_URL = BASE_URL+"incident_staff";
-    public static final String ADDPROJECT_URL = BASE_URL+"add_incident";
+    public static final String ADDINCIDENT_URL = BASE_URL+"add_incident";
     public static final String SELECT_DAY_URL = BASE_URL+"days_dropdown";
     public static final String TIME_URL = BASE_URL+"incident_time";
     public static final String INCIDENT_VIEW_URL = BASE_URL+"incident_view";

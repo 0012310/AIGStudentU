@@ -4,35 +4,22 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by admin on 3/22/2018.
+ * Created by admin on 3/29/2018.
  */
 
-public class ProjectView {
-
+public class ProjectDatum {
     @SerializedName("project_name")
     @Expose
     private String projectName;
-    @SerializedName("pstatus_val")
-    @Expose
-    private Object pstatusVal;
-    @SerializedName("pstatus")
-    @Expose
-    private String pstatus;
     @SerializedName("p_start_date")
     @Expose
     private String pStartDate;
-    @SerializedName("p_close_date")
-    @Expose
-    private String pCloseDate;
     @SerializedName("project_type")
     @Expose
     private String projectType;
     @SerializedName("trainer_name")
     @Expose
     private String trainerName;
-    @SerializedName("description")
-    @Expose
-    private String description;
     @SerializedName("filename")
     @Expose
     private String filename;
@@ -54,36 +41,12 @@ public class ProjectView {
         this.projectName = projectName;
     }
 
-    public Object getPstatusVal() {
-        return pstatusVal;
-    }
-
-    public void setPstatusVal(Object pstatusVal) {
-        this.pstatusVal = pstatusVal;
-    }
-
-    public String getPstatus() {
-        return pstatus;
-    }
-
-    public void setPstatus(String pstatus) {
-        this.pstatus = pstatus;
-    }
-
     public String getPStartDate() {
         return pStartDate;
     }
 
     public void setPStartDate(String pStartDate) {
         this.pStartDate = pStartDate;
-    }
-
-    public String getPCloseDate() {
-        return pCloseDate;
-    }
-
-    public void setPCloseDate(String pCloseDate) {
-        this.pCloseDate = pCloseDate;
     }
 
     public String getProjectType() {
@@ -100,14 +63,6 @@ public class ProjectView {
 
     public void setTrainerName(String trainerName) {
         this.trainerName = trainerName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getFilename() {

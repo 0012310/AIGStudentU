@@ -51,7 +51,8 @@
         <activity android:name=".activity.PersonalDetailsActivity" />
         <activity android:name=".activity.ProfileSummaryActivity" />
         <activity android:name=".activity.EditPersonalDetailActivity" />
-        <activity android:name=".activity.EditProfileSummaryActivity"></activity>
+        <activity android:name=".activity.EditProfileSummaryActivity" />
+        <activity android:name=".activity.ViewProjectDetailActivity"></activity>
     </application>
 
 </manifest>
