@@ -182,7 +182,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
 
     private void showFileChooser() {
         Intent intent = new Intent();
-        intent.setType("*/*");
+        intent.setType("application/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         try {
             startActivityForResult(
@@ -199,7 +199,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_PICK_FILE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri selectedImageUri = Uri.fromFile(new File(Utils.getFilePath()));
+            Uri selectedImageUri = data.getData();
             try {
                 selectedImagePath = Filepath.getPath(getActivity(), selectedImageUri);
                 Log.d("path : ", selectedImagePath);
@@ -352,10 +352,6 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
 
         }
     };
-
-
-
-
 
     @Override
     public void onClick(View v) {
