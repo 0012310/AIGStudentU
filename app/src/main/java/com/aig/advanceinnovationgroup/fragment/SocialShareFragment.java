@@ -85,9 +85,6 @@ public class SocialShareFragment extends Fragment {
         //Load url in webview
         webView.loadUrl(url);
 
-
-
-
     }
 
 

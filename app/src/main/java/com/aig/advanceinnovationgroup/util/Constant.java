@@ -32,4 +32,5 @@ public class Constant {
     public static final String EDIT_PERSONAL_DETAIL_URL = BASE_URL+ "edit_personal_details";
     public static final String PROFILE_SUMMARY_URL = BASE_URL+"view_profile_summary";
     public static final String EDIT_PROFILE_SUMMARY_URL = BASE_URL+"edit_profile_summary";
+    public static final String PAY_FEE_URL = BASE_URL+"fee";
 }

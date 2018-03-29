@@ -2,12 +2,16 @@ package com.aig.advanceinnovationgroup.fragment;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentUris;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
@@ -178,7 +182,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
 
     private void showFileChooser() {
         Intent intent = new Intent();
-        intent.setType("file/*");
+        intent.setType("*/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         try {
             startActivityForResult(
@@ -197,7 +201,8 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
         if (requestCode == REQUEST_PICK_FILE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri selectedImageUri = Uri.fromFile(new File(Utils.getFilePath()));
             try {
-                selectedImagePath = selectedImageUri.getPath();
+                selectedImagePath = Filepath.getPath(getActivity(), selectedImageUri);
+                Log.d("path : ", selectedImagePath);
                 String filename = selectedImagePath.substring(selectedImagePath.lastIndexOf("/") + 1).replaceAll("%20", " ");;
                 fileNameET.setText(filename);
             } catch (Exception e) {
@@ -217,6 +222,8 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
                     .show();
         }
     }
+
+
 
 
 
