@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.model.DesignationData;
@@ -23,8 +25,10 @@ import com.aig.advanceinnovationgroup.model.MonthName;
 import com.aig.advanceinnovationgroup.model.YearData;
 import com.aig.advanceinnovationgroup.model.YearName;
 import com.aig.advanceinnovationgroup.util.AppController;
+import com.aig.advanceinnovationgroup.util.AppPreferences;
 import com.aig.advanceinnovationgroup.util.Constant;
 import com.aig.advanceinnovationgroup.util.Utils;
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -32,9 +36,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by admin on 3/30/2018.
@@ -58,6 +67,7 @@ public class CustomDialogClass extends Dialog implements
     private ArrayList<String> monthList;
     private ArrayList<String> yearList;
     String[] employerType={"Select","Current Employer","Previous Employer","Other Employer"};
+    private String from_month, to_month, from_year, to_year, employe_type, designation;
 
 
     public CustomDialogClass(Activity a) {
@@ -91,6 +101,13 @@ public class CustomDialogClass extends Dialog implements
         toYearSP = (AppCompatSpinner) findViewById(R.id.sp_to_year);
         designationSP = (AppCompatSpinner) findViewById(R.id.sp_designation);
 
+
+        fromMonthSP.setOnItemSelectedListener(from_month_listener);
+        fromYearSP.setOnItemSelectedListener(from_year_listener);
+        toMonthSP.setOnItemSelectedListener(to_month_listener);
+        toYearSP.setOnItemSelectedListener(to_year_listener);
+        designationSP.setOnItemSelectedListener(designation_listner);
+        employerTypeSP.setOnItemSelectedListener(employe_type_listner);
 
         addBT = (Button) findViewById(R.id.btn_add);
         addBT.setOnClickListener(this);
@@ -319,8 +336,173 @@ public class CustomDialogClass extends Dialog implements
     }
 
 
+    private AdapterView.OnItemSelectedListener from_month_listener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            if (position>0) {
+               from_month = monthList.get(position);
+
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+    private AdapterView.OnItemSelectedListener from_year_listener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            if (position>0) {
+                from_year = yearList.get(position);
+
+            }
+
+        }
+
+
+
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+    private AdapterView.OnItemSelectedListener to_year_listener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            if (position>0) {
+                to_year = yearList.get(position);
+
+            }
+
+        }
+
+
+
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+    private AdapterView.OnItemSelectedListener to_month_listener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            if (position>0) {
+                to_month = monthList.get(position);
+
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+
+    private AdapterView.OnItemSelectedListener designation_listner = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            if (position>0) {
+                designation = designationList.get(position);
+
+            }
+
+        }
+
+
+
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+
+    private AdapterView.OnItemSelectedListener employe_type_listner = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            if (position>0) {
+                employe_type = employerType[position];
+
+            }
+
+        }
+
+
+
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+
+
+    public void addEmployerData(){
+        mProgressDialog = Utils.showProgressDialog(c);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.ADD_EMPLOYER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("Response :", response);
+                Utils.cancelProgressDialog(mProgressDialog);
+                try {
+                    JSONObject object = new JSONObject(response);
+                    Toast.makeText(c, object.getString("add_employer"), Toast.LENGTH_SHORT).show();
+                    dismiss();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.cancelProgressDialog(mProgressDialog);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> param = new HashMap<>();
+                param.put("student_id", AppPreferences.getString(c, AppPreferences.PREF_KEY.STUDENT_ID));
+                param.put("employer_name", employerET.getText().toString());
+                param.put("employer_type", employe_type);
+                param.put("from_month", from_month);
+                param.put("from_year",from_year);
+                param.put("to_month",  to_month);
+                param.put("to_year",  to_year);
+                param.put("designation",  designation);
+                param.put("job_profile",  jobProfileET.getText().toString());
+                return param;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
+    }
+
+
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.btn_add:
+                addEmployerData();
+                break;
+        }
     }
 }

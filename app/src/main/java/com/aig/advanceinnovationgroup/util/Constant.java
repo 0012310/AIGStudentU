@@ -36,4 +36,6 @@ public class Constant {
     public static final String DESIGNATION_URL = BASE_URL+"employee_designation";
     public static final String MONTH_URL = BASE_URL+"month_dropdown";
     public static final String YEAR_URL = BASE_URL+"year_dropdown";
+    public static final String ADD_EMPLOYER_URL = BASE_URL+"add_employer";
+    public static final String VIEW_EMPLOYER_URL = BASE_URL+"view_employer";
 }
