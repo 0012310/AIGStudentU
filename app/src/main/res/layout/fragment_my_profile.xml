@@ -95,6 +95,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/cv_add_employer"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="4dp"

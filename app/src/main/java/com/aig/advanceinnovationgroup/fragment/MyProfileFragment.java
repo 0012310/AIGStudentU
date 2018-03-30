@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aig.advanceinnovationgroup.R;
+import com.aig.advanceinnovationgroup.activity.AddEmployerActivity;
 import com.aig.advanceinnovationgroup.activity.PersonalDetailsActivity;
 import com.aig.advanceinnovationgroup.activity.ProfileSummaryActivity;
 
 
 public class MyProfileFragment extends Fragment implements View.OnClickListener {
 
-    private CardView personalDetailCV, profileSummaryCV;
+    private CardView personalDetailCV, profileSummaryCV, addEmployerCV;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
     private void initView(View view) {
         personalDetailCV = (CardView) view.findViewById(R.id.cv_personal_details);
         profileSummaryCV = (CardView) view.findViewById(R.id.cv_profile_summary);
+        addEmployerCV = (CardView) view.findViewById(R.id.cv_add_employer);
         personalDetailCV.setOnClickListener(this);
         profileSummaryCV.setOnClickListener(this);
+        addEmployerCV.setOnClickListener(this);
     }
 
 
@@ -51,6 +54,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             case R.id.cv_profile_summary:
                 Intent intent1 = new Intent(getActivity(), ProfileSummaryActivity.class);
                 startActivity(intent1);
+                break;
+            case R.id.cv_add_employer:
+                Intent intent2 = new Intent(getActivity(), AddEmployerActivity.class);
+                startActivity(intent2);
                 break;
         }
     }

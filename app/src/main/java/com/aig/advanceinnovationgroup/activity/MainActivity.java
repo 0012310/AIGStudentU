@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void changeFragment(int position){
+    public void changeFragment(int position){
         switch (position){
             case 1:
                 proceed();

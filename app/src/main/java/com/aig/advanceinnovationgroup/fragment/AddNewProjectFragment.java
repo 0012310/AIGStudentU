@@ -1,19 +1,30 @@
 package com.aig.advanceinnovationgroup.fragment;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentUris;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatSpinner;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aig.advanceinnovationgroup.R;
+import com.aig.advanceinnovationgroup.activity.MainActivity;
 import com.aig.advanceinnovationgroup.adapter.CustomAdapter;
 import com.aig.advanceinnovationgroup.model.ProjectType;
 import com.aig.advanceinnovationgroup.model.ProjectTypeData;
@@ -53,6 +65,7 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,6 +73,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
@@ -76,8 +91,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
     private int mposition;
     private static final int REQUEST_PICK_FILE = 1;
 
-    private Uri fileUri;
-    String selectedImagePath = "";
+    private String selectedImagePath ;
     long totalSize = 0;
     private String project_type_id;
 
@@ -89,6 +103,16 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
         projectTypeList = new ArrayList<>();
         projectList = new ArrayList<>();
         projectListId = new ArrayList<>();
+        if (!checkPermission()) {
+
+        } else {
+            if (checkPermission()) {
+                requestPermissionAndContinue();
+            } else {
+
+            }
+        }
+
 
     }
 
@@ -181,17 +205,10 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
     }
 
     private void showFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("application/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"),
-                    REQUEST_PICK_FILE);
-        } catch (android.content.ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
-            Toast.makeText(getActivity(), "Please install a File Manager.", Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, REQUEST_PICK_FILE);
 
     }
 
@@ -199,27 +216,10 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_PICK_FILE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri selectedImageUri = data.getData();
-            try {
-                selectedImagePath = Filepath.getPath(getActivity(), selectedImageUri);
-                Log.d("path : ", selectedImagePath);
-                String filename = selectedImagePath.substring(selectedImagePath.lastIndexOf("/") + 1).replaceAll("%20", " ");;
-                fileNameET.setText(filename);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else if (resultCode == RESULT_CANCELED) {
-
-            // user cancelled Image capture
-            Toast.makeText(getContext(),
-                    "User cancelled file capture", Toast.LENGTH_SHORT)
-                    .show();
-
-        } else {
-            // failed to capture image
-            Toast.makeText(getContext(),
-                    "Sorry! Failed to capture file", Toast.LENGTH_SHORT)
-                    .show();
+            Uri uri = data.getData();
+            String uriString = uri.toString();
+            selectedImagePath = Filepath.getPath(getActivity(), uri);
+            fileNameET.setText(selectedImagePath);
         }
     }
 
@@ -240,7 +240,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
             // setting progress bar to zero
             // progressBar.setProgress(0);
 
-        //    pd = ProgressDialog.show(getActivity(), "","Please Wait...", true);
+            mProgressDialog = Utils.showProgressDialog(getActivity());
 
             super.onPreExecute();
         }
@@ -248,13 +248,7 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
         @Override
         protected void onProgressUpdate(Integer... progress) {
             // Making progress bar visible
-//            progressBar.setVisibility(View.VISIBLE);
-//
-//            // updating progress bar value
-//            progressBar.setProgress(progress[0]);
-//
-//            // updating percentage value
-//            txtPercentage.setText(String.valueOf(progress[0]) + "%");
+
         }
 
         @Override
@@ -279,15 +273,11 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
                         publishProgress((int) ((num / (float) totalSize) * 100));
                     }
                 });
+                String file1 = Environment.getExternalStorageDirectory()+"/AIG";
+                File myDir = new File(file1, selectedImagePath);
+                FileBody fileBody1 = new FileBody(myDir);
 
-                System.out.println("imagePath : " +selectedImagePath);
-
-                if (selectedImagePath!=null) {
-                    File sourceFile = new File(selectedImagePath);
-
-                    // Adding file data to http body
-                    entity.addPart("project_file", new FileBody(sourceFile));
-                }
+                entity.addPart("project_file", fileBody1);
 
                 // Extra parameters if you want to pass to server
                 entity.addPart("project_name", new StringBody(projectNameET.getText().toString()));
@@ -295,8 +285,6 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
                 entity.addPart("project_type", new StringBody(project_type_id));
                 entity.addPart("trainer_id", new StringBody("2"));
                 entity.addPart("student_id",new StringBody(AppPreferences.getString(getActivity(), AppPreferences.PREF_KEY.STUDENT_ID)));
-
-
 
                 totalSize = entity.getContentLength();
                 httppost.setEntity(entity);
@@ -328,6 +316,14 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
         @Override
         protected void onPostExecute(String result) {
             Log.e("", "Response from server: " + result);
+            Utils.cancelProgressDialog(mProgressDialog);
+            try {
+                JSONObject object = new JSONObject(result);
+                Toast.makeText(getActivity(), object.getString("add_project"), Toast.LENGTH_SHORT).show();
+                ((MainActivity)getActivity()).changeFragment(7);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             super.onPostExecute(result);
         }
@@ -365,4 +361,71 @@ public class AddNewProjectFragment extends Fragment implements View.OnClickListe
 
         }
     }
+
+
+
+
+    private static final int PERMISSION_REQUEST_CODE = 200;
+    private boolean checkPermission() {
+
+        return ContextCompat.checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(getActivity(), READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                ;
+    }
+
+    private void requestPermissionAndContinue() {
+        if (ContextCompat.checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(getActivity(), READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), WRITE_EXTERNAL_STORAGE)
+                    && ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), READ_EXTERNAL_STORAGE)) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+                alertBuilder.setCancelable(true);
+                alertBuilder.setTitle("sadsa");
+                alertBuilder.setMessage("dfsjahffujsk");
+                alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{WRITE_EXTERNAL_STORAGE
+                                , READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+                    }
+                });
+                AlertDialog alert = alertBuilder.create();
+                alert.show();
+                Log.e("", "permission denied, show dialog");
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{WRITE_EXTERNAL_STORAGE,
+                        READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+            }
+        } else {
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (permissions.length > 0 && grantResults.length > 0) {
+
+                boolean flag = true;
+                for (int i = 0; i < grantResults.length; i++) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+
+                } else {
+                    getActivity().finish();
+                }
+
+            } else {
+                getActivity().finish();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
 }
