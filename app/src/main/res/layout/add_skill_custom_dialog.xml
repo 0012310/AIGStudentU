@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Skill (Eg. Html, Java, etc.)"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_skill"
+        android:hint="Enter your skill"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Version (Eg. 5, 4.5)"
+                android:textSize="15dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_version"
+                android:hint="Version"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Last Used (Eg. 2014)"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_last_used"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Experience"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Year"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Month"
+                android:textSize="15dp"
+                />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_year"/>
+
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/sp_month"/>
+
+
+
+    </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btn_add_skill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:clickable="true"
+            android:text="+ Add"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/margin_10"
+            android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

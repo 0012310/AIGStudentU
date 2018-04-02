@@ -51,7 +51,9 @@
         <activity android:name=".activity.EditPersonalDetailActivity" />
         <activity android:name=".activity.EditProfileSummaryActivity" />
         <activity android:name=".activity.ViewProjectDetailActivity" />
-        <activity android:name=".activity.AddEmployerActivity"></activity>
+        <activity android:name=".activity.AddEmployerActivity" />
+        <activity android:name=".activity.AddProjectActivity" />
+        <activity android:name=".activity.AddSkillActivity"></activity>
     </application>
 
 </manifest>

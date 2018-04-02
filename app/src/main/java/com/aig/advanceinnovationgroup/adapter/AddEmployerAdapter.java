@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aig.advanceinnovationgroup.R;
-import com.aig.advanceinnovationgroup.activity.AddEmployerActivity;
 import com.aig.advanceinnovationgroup.model.EmployerDatum;
 
 import java.util.List;

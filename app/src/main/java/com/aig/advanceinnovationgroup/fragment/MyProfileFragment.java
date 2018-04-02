@@ -10,13 +10,15 @@ import android.view.ViewGroup;
 
 import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.activity.AddEmployerActivity;
+import com.aig.advanceinnovationgroup.activity.AddProjectActivity;
+import com.aig.advanceinnovationgroup.activity.AddSkillActivity;
 import com.aig.advanceinnovationgroup.activity.PersonalDetailsActivity;
 import com.aig.advanceinnovationgroup.activity.ProfileSummaryActivity;
 
 
 public class MyProfileFragment extends Fragment implements View.OnClickListener {
 
-    private CardView personalDetailCV, profileSummaryCV, addEmployerCV;
+    private CardView personalDetailCV, profileSummaryCV, addEmployerCV, addProjectCV, addSkillCV;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,9 +40,14 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         personalDetailCV = (CardView) view.findViewById(R.id.cv_personal_details);
         profileSummaryCV = (CardView) view.findViewById(R.id.cv_profile_summary);
         addEmployerCV = (CardView) view.findViewById(R.id.cv_add_employer);
+        addProjectCV = (CardView) view.findViewById(R.id.cv_add_project);
+        addSkillCV = (CardView) view.findViewById(R.id.cv_add_skill);
+
         personalDetailCV.setOnClickListener(this);
         profileSummaryCV.setOnClickListener(this);
         addEmployerCV.setOnClickListener(this);
+        addProjectCV.setOnClickListener(this);
+        addSkillCV.setOnClickListener(this);
     }
 
 
@@ -58,6 +65,14 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             case R.id.cv_add_employer:
                 Intent intent2 = new Intent(getActivity(), AddEmployerActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.cv_add_project:
+                Intent intent3 = new Intent(getActivity(), AddProjectActivity.class);
+                startActivity(intent3);
+                break;
+            case R.id.cv_add_skill:
+                Intent intent4 = new Intent(getActivity(), AddSkillActivity.class);
+                startActivity(intent4);
                 break;
         }
     }

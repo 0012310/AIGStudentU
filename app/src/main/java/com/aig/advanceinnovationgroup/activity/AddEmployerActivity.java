@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -43,6 +45,7 @@ public class AddEmployerActivity extends AppCompatActivity implements View.OnCli
     private AddEmployerAdapter employerAdapter;
     List<EmployerDatum> employerDataList;
     private Dialog mProgressDialog;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,10 @@ public class AddEmployerActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initView() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Add Employer");
         employerRV = (RecyclerView) findViewById(R.id.rv_addEmployer);
         employerRV.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(AddEmployerActivity.this, LinearLayoutManager.VERTICAL, false);
@@ -114,4 +121,15 @@ public class AddEmployerActivity extends AppCompatActivity implements View.OnCli
                 break;
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
