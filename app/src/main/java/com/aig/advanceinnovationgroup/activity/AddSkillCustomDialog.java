@@ -79,7 +79,7 @@ public class AddSkillCustomDialog extends Dialog implements
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.add_skill_custom_dialog);
 
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         monthNameList = new ArrayList<>();
 
         monthList = new ArrayList<>();

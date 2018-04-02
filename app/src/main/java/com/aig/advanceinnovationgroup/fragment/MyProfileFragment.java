@@ -12,13 +12,14 @@ import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.activity.AddEmployerActivity;
 import com.aig.advanceinnovationgroup.activity.AddProjectActivity;
 import com.aig.advanceinnovationgroup.activity.AddSkillActivity;
+import com.aig.advanceinnovationgroup.activity.LanguageKnownActivity;
 import com.aig.advanceinnovationgroup.activity.PersonalDetailsActivity;
 import com.aig.advanceinnovationgroup.activity.ProfileSummaryActivity;
 
 
 public class MyProfileFragment extends Fragment implements View.OnClickListener {
 
-    private CardView personalDetailCV, profileSummaryCV, addEmployerCV, addProjectCV, addSkillCV;
+    private CardView personalDetailCV, profileSummaryCV, addEmployerCV, addProjectCV, addSkillCV, languageKnownCV;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,12 +43,14 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         addEmployerCV = (CardView) view.findViewById(R.id.cv_add_employer);
         addProjectCV = (CardView) view.findViewById(R.id.cv_add_project);
         addSkillCV = (CardView) view.findViewById(R.id.cv_add_skill);
+        languageKnownCV = (CardView) view.findViewById(R.id.cv_known_language);
 
         personalDetailCV.setOnClickListener(this);
         profileSummaryCV.setOnClickListener(this);
         addEmployerCV.setOnClickListener(this);
         addProjectCV.setOnClickListener(this);
         addSkillCV.setOnClickListener(this);
+        languageKnownCV.setOnClickListener(this);
     }
 
 
@@ -73,6 +76,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             case R.id.cv_add_skill:
                 Intent intent4 = new Intent(getActivity(), AddSkillActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.cv_known_language:
+                Intent intent5 = new Intent(getActivity(), LanguageKnownActivity.class);
+                startActivity(intent5);
                 break;
         }
     }

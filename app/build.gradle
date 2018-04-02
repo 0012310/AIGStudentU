@@ -48,4 +48,5 @@ dependencies {
     implementation files('libs/httpclient-4.3.6.jar')
     implementation files('libs/httpcore-4.3.3.jar')
     implementation files('libs/httpmime-4.3.6.jar')
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

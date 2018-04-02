@@ -41,4 +41,6 @@ public class Constant {
     public static final String ADD_PROJECT_URL = BASE_URL+"add_profile_project";
     public static final String PROFILE_PROJECT_URL = BASE_URL+"profile_project_listing";
     public static final String ADD_SKILL_URL = BASE_URL+ "add_skills";
+    public static final String VIEW_SKILL_URL = BASE_URL+"view_skills_list";
+    public static final String VIEW_DESIRED_JOB_URL = BASE_URL+"view_desired_job";
 }

@@ -53,7 +53,11 @@
         <activity android:name=".activity.ViewProjectDetailActivity" />
         <activity android:name=".activity.AddEmployerActivity" />
         <activity android:name=".activity.AddProjectActivity" />
-        <activity android:name=".activity.AddSkillActivity"></activity>
+        <activity android:name=".activity.AddSkillActivity" />
+        <activity android:name=".activity.UploadResumeActivity" />
+        <activity android:name=".activity.UploadPictureActivity" />
+        <activity android:name=".activity.LanguageKnownActivity" />
+        <activity android:name=".activity.DesiredJobActivity"></activity>
     </application>
 
 </manifest>

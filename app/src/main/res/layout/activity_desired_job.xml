@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.aig.advanceinnovationgroup.activity.DesiredJobActivity">
+
+    <include
+        layout="@layout/toolbar"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ll_bg"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/ll_job_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:background="#f3f3f3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="Job Type                          : "
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_job_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_employer_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Employer Type                :"
+                    android:layout_marginLeft="16dp"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                <TextView
+                    android:id="@+id/tv_employer_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:layout_marginLeft="16dp"
+                    android:focusable="false"
+                    android:inputType="text|textPersonName"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:background="#f3f3f3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category                           :"
+                    android:layout_marginLeft="16dp"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                <TextView
+                    android:id="@+id/tv_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="text|textPersonName"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_phy_challenged"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:background="#fff">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:text="Physically Challenged    : "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                <TextView
+                    android:id="@+id/tv_phy_challenged"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:ems="10"
+                    android:focusable="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:background="#f3f3f3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Description                       :"
+                    android:layout_marginLeft="16dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:layout_marginLeft="16dp"
+                    android:focusable="false"
+                    android:inputType="text|textPersonName"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_job_permit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Work Permit for USA     :"
+                    android:layout_marginLeft="16dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/tv_work_permit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="text|textPersonName"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_other_countries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other Countries               :"
+                    android:layout_marginLeft="16dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/tv_other_countries"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="text|textPersonName"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            </LinearLayout>
+
+        </LinearLayout>
+</LinearLayout>
