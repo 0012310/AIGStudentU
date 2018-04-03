@@ -43,4 +43,7 @@ public class Constant {
     public static final String ADD_SKILL_URL = BASE_URL+ "add_skills";
     public static final String VIEW_SKILL_URL = BASE_URL+"view_skills_list";
     public static final String VIEW_DESIRED_JOB_URL = BASE_URL+"view_desired_job";
+    public static final String EDIT_DESIRED_JOB_URL = BASE_URL+"edit_desired_job";
+    public static final String WORK_PERMIT_URL =BASE_URL+"work_permit_dropdown";
+    public static final String COUNTRY_URL =BASE_URL+"country_dropdown";
 }

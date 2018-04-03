@@ -57,7 +57,8 @@
         <activity android:name=".activity.UploadResumeActivity" />
         <activity android:name=".activity.UploadPictureActivity" />
         <activity android:name=".activity.LanguageKnownActivity" />
-        <activity android:name=".activity.DesiredJobActivity"></activity>
+        <activity android:name=".activity.DesiredJobActivity" />
+        <activity android:name=".activity.EditDesiredJobActivity"></activity>
     </application>
 
 </manifest>

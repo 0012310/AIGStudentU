@@ -16,7 +16,6 @@ public class UploadResumeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upload_resume);
         initView();
 
-
     }
 
     private void initView() {

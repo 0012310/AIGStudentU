@@ -12,6 +12,7 @@ import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.activity.AddEmployerActivity;
 import com.aig.advanceinnovationgroup.activity.AddProjectActivity;
 import com.aig.advanceinnovationgroup.activity.AddSkillActivity;
+import com.aig.advanceinnovationgroup.activity.DesiredJobActivity;
 import com.aig.advanceinnovationgroup.activity.LanguageKnownActivity;
 import com.aig.advanceinnovationgroup.activity.PersonalDetailsActivity;
 import com.aig.advanceinnovationgroup.activity.ProfileSummaryActivity;
@@ -19,7 +20,7 @@ import com.aig.advanceinnovationgroup.activity.ProfileSummaryActivity;
 
 public class MyProfileFragment extends Fragment implements View.OnClickListener {
 
-    private CardView personalDetailCV, profileSummaryCV, addEmployerCV, addProjectCV, addSkillCV, languageKnownCV;
+    private CardView personalDetailCV, profileSummaryCV, addEmployerCV, addProjectCV, addSkillCV, languageKnownCV, desiredJobCV;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         addProjectCV = (CardView) view.findViewById(R.id.cv_add_project);
         addSkillCV = (CardView) view.findViewById(R.id.cv_add_skill);
         languageKnownCV = (CardView) view.findViewById(R.id.cv_known_language);
+        desiredJobCV = (CardView) view.findViewById(R.id.cv_desired_job);
 
         personalDetailCV.setOnClickListener(this);
         profileSummaryCV.setOnClickListener(this);
@@ -51,6 +53,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         addProjectCV.setOnClickListener(this);
         addSkillCV.setOnClickListener(this);
         languageKnownCV.setOnClickListener(this);
+        desiredJobCV.setOnClickListener(this);
     }
 
 
@@ -80,6 +83,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             case R.id.cv_known_language:
                 Intent intent5 = new Intent(getActivity(), LanguageKnownActivity.class);
                 startActivity(intent5);
+                break;
+            case R.id.cv_desired_job:
+                Intent intent6 = new Intent(getActivity(), DesiredJobActivity.class);
+                startActivity(intent6);
                 break;
         }
     }
