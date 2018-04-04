@@ -1,6 +1,7 @@
 package com.aig.advanceinnovationgroup.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.model.CounryData;
@@ -35,13 +38,16 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EditDesiredJobActivity extends AppCompatActivity {
+public class EditDesiredJobActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     private AppCompatSpinner jobTypeSP, employerTypeSP, categorySP, physiChallengedSP,  workPermitSP, otherCountriesSP;
@@ -57,6 +63,10 @@ public class EditDesiredJobActivity extends AppCompatActivity {
     private List<WorkPermitDatum> workPermitData;
     private List<CountryList> countryLists;
     private List<String> countryList;
+    private List<String> countryIDList;
+    private List<String> workPermitIDList;
+    private Button updateBTN;
+    private String jobID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +77,10 @@ public class EditDesiredJobActivity extends AppCompatActivity {
         workPermitData = new ArrayList<>();
         countryLists = new ArrayList<>();
         desiredJobList = new ArrayList<>();
+        countryIDList = new ArrayList<>();
+        workPermitIDList = new ArrayList<>();
         initView();
-        workPermitData();
-        countryData();
+
         desiredJobData();
     }
 
@@ -86,11 +97,14 @@ public class EditDesiredJobActivity extends AppCompatActivity {
         descriptionET = (EditText) findViewById(R.id.et_description);
         workPermitSP = (AppCompatSpinner) findViewById(R.id.sp_work_permit);
         otherCountriesSP = (AppCompatSpinner) findViewById(R.id.sp_other_countries);
+        updateBTN = (Button) findViewById(R.id.btn_update);
+
+        updateBTN.setOnClickListener(this);
 
 
     }
 
-    public void workPermitData(){
+    public void workPermitData(final String workPermit){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.WORK_PERMIT_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -105,9 +119,11 @@ public class EditDesiredJobActivity extends AppCompatActivity {
                     workPermitData = permitData.getWorkPermitData();
 
                     workPermitList.add("Empty");
+                    workPermitIDList.add("0");
 
                     for (int i = 0; i < workPermitData.size(); i++) {
                         workPermitList.add(workPermitData.get(i).getWorkPermit());
+                       // workPermitIDList.add(workPermitData.get(i).get)
 
                     }
 
@@ -139,6 +155,17 @@ public class EditDesiredJobActivity extends AppCompatActivity {
                         }
                     };
                     workPermitSP.setAdapter(spinnerArrayAdapter);
+                    if (workPermit != null){
+                        for (int i = 0; i <  workPermitList.size(); i++) {
+                            if (workPermitList.get(i).equals(workPermit))
+                            {
+                                workPermitSP.setSelection(i);
+                            }
+                        }
+                    } else {
+                        workPermitSP.setSelection(0);
+                    }
+
                 }
             }
         }, new Response.ErrorListener() {
@@ -152,7 +179,7 @@ public class EditDesiredJobActivity extends AppCompatActivity {
 
 
 
-    public void countryData(){
+    public void countryData(final String countries){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.COUNTRY_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -167,9 +194,11 @@ public class EditDesiredJobActivity extends AppCompatActivity {
                     countryLists = counryData.getCountryList();
 
                     countryList.add("Empty");
+                    countryIDList.add("0");
 
                     for (int i = 0; i < countryLists.size(); i++) {
                         countryList.add(countryLists.get(i).getCountry());
+                        countryIDList.add(countryLists.get(i).getCountryId());
 
                     }
 
@@ -201,6 +230,16 @@ public class EditDesiredJobActivity extends AppCompatActivity {
                         }
                     };
                     otherCountriesSP.setAdapter(spinnerArrayAdapter);
+                    if (countries != null){
+                        for (int i = 0; i <  countryIDList.size(); i++) {
+                            if (countryIDList.get(i).equals(countries))
+                            {
+                                otherCountriesSP.setSelection(i);
+                            }
+                        }
+                    } else {
+                        otherCountriesSP.setSelection(0);
+                    }
                 }
             }
         }, new Response.ErrorListener() {
@@ -286,10 +325,6 @@ public class EditDesiredJobActivity extends AppCompatActivity {
                         };
                         employerTypeSP.setAdapter(spinnerArrayAdapter);
 
-
-
-
-
                         final ArrayAdapter<String> categoryArrayAdapter = new ArrayAdapter<String>(
                                 EditDesiredJobActivity.this, android.R.layout.simple_spinner_dropdown_item, categoryType) {
                             @Override
@@ -345,6 +380,9 @@ public class EditDesiredJobActivity extends AppCompatActivity {
                         };
                         physiChallengedSP.setAdapter(challengeArrayAdapter);
                     for (int i = 0; i < desiredJobList.size(); i++) {
+
+                        jobID = desiredJobList.get(i).getJobId();
+
                         if (desiredJobList.get(i).getJobType()==null){
                             jobTypeSP.setSelection(0);
                         }else if (desiredJobList.get(i).getJobType().equalsIgnoreCase("1")) {
@@ -375,6 +413,9 @@ public class EditDesiredJobActivity extends AppCompatActivity {
                             physiChallengedSP.setSelection(2);
                         }
 
+                        workPermitData(desiredJobList.get(i).getWorkPermit());
+                        countryData(desiredJobList.get(i).getCountries());
+
                         if (desiredJobList.get(i).getDescription()==null){
                             descriptionET.setText("Empty");
                         }else {
@@ -402,5 +443,82 @@ public class EditDesiredJobActivity extends AppCompatActivity {
             }
         };
         AppController.getInstance().addToRequestQueue(stringRequest);
+    }
+
+
+
+    public void editDesiredJobData(){
+        mProgressDialog = Utils.showProgressDialog(EditDesiredJobActivity.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.UPDATE_DESIRED_JOB_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("Response :", response);
+                Utils.cancelProgressDialog(mProgressDialog);
+
+                try {
+                    JSONObject object = new JSONObject(response);
+
+                    Toast.makeText(EditDesiredJobActivity.this, object.getString("update_work_permit"), Toast.LENGTH_SHORT).show();
+                    Intent intent  = new Intent(EditDesiredJobActivity.this, DesiredJobActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.cancelProgressDialog(mProgressDialog);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> param = new HashMap<>();
+                param.put("student_id", AppPreferences.getString(EditDesiredJobActivity.this, AppPreferences.PREF_KEY.STUDENT_ID));
+               if (jobTypeSP.getSelectedItem().toString().equalsIgnoreCase("Permanent")){
+                   param.put("job_type", "1");
+               }else if (jobTypeSP.getSelectedItem().toString().equalsIgnoreCase("Temporary/Contractual")){
+                   param.put("job_type", "2");
+               }else {
+                   param.put("job_type", "0");
+               }
+                if (employerTypeSP.getSelectedItem().toString().equalsIgnoreCase("Full Time")){
+                    param.put("employment_type", "1");
+                }else if (employerTypeSP.getSelectedItem().toString().equalsIgnoreCase("Part Time")){
+                    param.put("employment_type", "2");
+                }else {
+                    param.put("employment_type", "0");
+                }
+                param.put("category",categorySP.getSelectedItem().toString());
+                if (physiChallengedSP.getSelectedItem().toString().equalsIgnoreCase("Yes")){
+                    param.put("physically", "1");
+                }else if (physiChallengedSP.getSelectedItem().toString().equalsIgnoreCase("No")){
+                    param.put("physically", "2");
+                }else {
+                    param.put("physically", "0");
+                }
+                param.put("description", descriptionET.getText().toString());
+
+                param.put("work_permit", workPermitSP.getSelectedItem().toString());
+                param.put("countries", otherCountriesSP.getSelectedItem().toString());
+                param.put("job_id", jobID);
+                return param;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_update:
+               editDesiredJobData();
+        }
     }
 }
