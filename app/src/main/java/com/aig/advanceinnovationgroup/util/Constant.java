@@ -49,4 +49,6 @@ public class Constant {
     public static final String UPDATE_DESIRED_JOB_URL =BASE_URL+"update_work_permit";
     public static final String ADD_LANGUAGE_URL =BASE_URL+ "add_language_known";
     public static final String VIEW_LANGUAGE_URL =BASE_URL+ "language_known_listing";
+    public static final String UPLOAD_RESUME_URL =BASE_URL+ "resume_upload";
+    public static final String EDUCATION_URL =BASE_URL+  "view_education";
 }

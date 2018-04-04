@@ -13,14 +13,17 @@ import com.aig.advanceinnovationgroup.activity.AddEmployerActivity;
 import com.aig.advanceinnovationgroup.activity.AddProjectActivity;
 import com.aig.advanceinnovationgroup.activity.AddSkillActivity;
 import com.aig.advanceinnovationgroup.activity.DesiredJobActivity;
+import com.aig.advanceinnovationgroup.activity.EducationActivity;
 import com.aig.advanceinnovationgroup.activity.LanguageKnownActivity;
 import com.aig.advanceinnovationgroup.activity.PersonalDetailsActivity;
 import com.aig.advanceinnovationgroup.activity.ProfileSummaryActivity;
+import com.aig.advanceinnovationgroup.activity.UploadResumeActivity;
 
 
 public class MyProfileFragment extends Fragment implements View.OnClickListener {
 
-    private CardView personalDetailCV, profileSummaryCV, addEmployerCV, addProjectCV, addSkillCV, languageKnownCV, desiredJobCV;
+    private CardView personalDetailCV, profileSummaryCV, addEmployerCV, addProjectCV, addSkillCV, languageKnownCV, desiredJobCV,
+                     uploadResumeCV,educationCV;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,8 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         addSkillCV = (CardView) view.findViewById(R.id.cv_add_skill);
         languageKnownCV = (CardView) view.findViewById(R.id.cv_known_language);
         desiredJobCV = (CardView) view.findViewById(R.id.cv_desired_job);
+        uploadResumeCV = (CardView) view.findViewById(R.id.cv_upload_resume);
+        educationCV = (CardView) view.findViewById(R.id.cv_education);
 
         personalDetailCV.setOnClickListener(this);
         profileSummaryCV.setOnClickListener(this);
@@ -54,6 +59,8 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         addSkillCV.setOnClickListener(this);
         languageKnownCV.setOnClickListener(this);
         desiredJobCV.setOnClickListener(this);
+        uploadResumeCV.setOnClickListener(this);
+        educationCV.setOnClickListener(this);
     }
 
 
@@ -87,6 +94,14 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             case R.id.cv_desired_job:
                 Intent intent6 = new Intent(getActivity(), DesiredJobActivity.class);
                 startActivity(intent6);
+                break;
+            case R.id.cv_upload_resume:
+                Intent intent7 = new Intent(getActivity(), UploadResumeActivity.class);
+                startActivity(intent7);
+                break;
+            case R.id.cv_education:
+                Intent intent8 = new Intent(getActivity(), EducationActivity.class);
+                startActivity(intent8);
                 break;
         }
     }

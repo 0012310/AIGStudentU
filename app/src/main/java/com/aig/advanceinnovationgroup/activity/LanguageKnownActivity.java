@@ -59,12 +59,12 @@ public class LanguageKnownActivity extends AppCompatActivity implements View.OnC
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Language Known");
 
-        languageRV = (RecyclerView) findViewById(R.id.rv_add_skill);
+        languageRV = (RecyclerView) findViewById(R.id.rv_language);
         languageRV.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(LanguageKnownActivity.this, LinearLayoutManager.VERTICAL, false);
         languageRV.setLayoutManager(layoutManager);
 
-        languageBT = (Button) findViewById(R.id.btn_add_skill);
+        languageBT = (Button) findViewById(R.id.btn_language);
         languageBT.setOnClickListener(this);
 
     }
