@@ -1,6 +1,7 @@
 package com.aig.advanceinnovationgroup.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.activity.AddSkillActivity;
+import com.aig.advanceinnovationgroup.activity.AddUserActivity;
 import com.aig.advanceinnovationgroup.adapter.SkillAdapter;
 import com.aig.advanceinnovationgroup.adapter.UserAdapter;
 import com.aig.advanceinnovationgroup.model.SkillData;
@@ -40,13 +43,14 @@ import java.util.List;
 import java.util.Map;
 
 
-public class FaqFragment extends Fragment {
+public class FaqFragment extends Fragment implements View.OnClickListener {
 
     String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJJZCI6IjEiLCJyb2xlIjoiU1VQRVJBRE1JTiJ9.II1eEmwbKL8ke2-UAm1mdflIkbe5RZi3I3su0x7Ccn1sAwGOhXnTX38sHrMKzLIZtShv19i9eL9zhreUw8rylg";
 
     RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private List<UserDetail> userDetailList;
+    private Button addUserBT;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,9 @@ public class FaqFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+
+        addUserBT = (Button) view.findViewById(R.id.btn_add_user);
+        addUserBT.setOnClickListener(this);
     }
 
 
@@ -124,4 +131,13 @@ public class FaqFragment extends Fragment {
         AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_add_user:
+                Intent intent = new Intent(getActivity(), AddUserActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }

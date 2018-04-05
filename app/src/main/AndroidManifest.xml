@@ -60,7 +60,8 @@
         <activity android:name=".activity.DesiredJobActivity" />
         <activity android:name=".activity.EditDesiredJobActivity" />
         <activity android:name=".activity.EducationActivity" />
-        <activity android:name=".activity.EditUser"></activity>
+        <activity android:name=".activity.EditUser" />
+        <activity android:name=".activity.AddUserActivity"></activity>
     </application>
 
 </manifest>
