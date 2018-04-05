@@ -59,7 +59,8 @@
         <activity android:name=".activity.LanguageKnownActivity" />
         <activity android:name=".activity.DesiredJobActivity" />
         <activity android:name=".activity.EditDesiredJobActivity" />
-        <activity android:name=".activity.EducationActivity"></activity>
+        <activity android:name=".activity.EducationActivity" />
+        <activity android:name=".activity.EditUser"></activity>
     </application>
 
 </manifest>

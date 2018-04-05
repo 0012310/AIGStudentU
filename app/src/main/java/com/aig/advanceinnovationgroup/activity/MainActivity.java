@@ -1,11 +1,10 @@
 package com.aig.advanceinnovationgroup.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aig.advanceinnovationgroup.R;
@@ -23,6 +23,7 @@ import com.aig.advanceinnovationgroup.fragment.AddPraparatoryExamFragment;
 import com.aig.advanceinnovationgroup.fragment.CustomerVoiceFragment;
 import com.aig.advanceinnovationgroup.fragment.DashboardFragment;
 import com.aig.advanceinnovationgroup.fragment.DownloadFragment;
+import com.aig.advanceinnovationgroup.fragment.FaqFragment;
 import com.aig.advanceinnovationgroup.fragment.FeeDetailFragment;
 import com.aig.advanceinnovationgroup.fragment.MyProfileFragment;
 import com.aig.advanceinnovationgroup.fragment.PayFeeFragment;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private TextView tv_fee_detail, tv_pay_fee, tv_add_new_project, tv_view_project, tv_add_new_incident, tv_view_incident, tv_add_preparatory_exam,
                      tv_view_preparatory_exam, tv_view_final_exam, tv_add_complaint, tv_view_complaint;
+    private RelativeLayout homeRL, elearningRL, helpRL, faqRL;
+    private View viewHome, viewElearning, viewhelp, viewFaq;
 
 
     @Override
@@ -194,6 +197,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSupportActionBar().setTitle("Social Share");
                 break;
 
+            case 17:
+                FaqFragment faqFragment = new FaqFragment();
+                FragmentTransaction faqTransaction = fragmentManager.beginTransaction();
+                faqTransaction.replace(R.id.container, faqFragment);
+                faqTransaction.commit();
+                getSupportActionBar().setTitle("Social Share");
+                break;
+
         }
 
     }
@@ -242,6 +253,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_add_complaint = (TextView) findViewById(R.id.tv_add_new_complaint);
         tv_view_complaint = (TextView) findViewById(R.id.tv_view_complaint);
 
+        homeRL = (RelativeLayout) findViewById(R.id.rl_home);
+        elearningRL = (RelativeLayout) findViewById(R.id.rl_elearning);
+        helpRL = (RelativeLayout) findViewById(R.id.rl_help);
+        faqRL = (RelativeLayout) findViewById(R.id.rl_faq);
+
+        viewHome = (View) findViewById(R.id.view_home);
+        viewElearning = (View) findViewById(R.id.view_elearning);
+        viewhelp = (View) findViewById(R.id.view_help);
+        viewFaq = (View) findViewById(R.id.view_faq);
+
 
 
 
@@ -272,6 +293,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_view_final_exam.setOnClickListener(this);
         tv_add_complaint.setOnClickListener(this);
         tv_view_complaint.setOnClickListener(this);
+
+
+        homeRL.setOnClickListener(this);
+        elearningRL.setOnClickListener(this);
+        helpRL.setOnClickListener(this);
+        faqRL.setOnClickListener(this);
+
 
         closeDrawer();
 
@@ -418,6 +446,73 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 changeFragment(16);
                 drawerLayout.closeDrawer(Gravity.START);
                 break;
+            case R.id.rl_home:
+                tabSelection(1);
+                changeFragment(17);
+                break;
+            case R.id.rl_elearning:
+                tabSelection(2);
+                break;
+            case R.id.rl_faq:
+                tabSelection(3);
+                break;
+            case R.id.rl_help:
+                tabSelection(4);
+                break;
+
+
         }
     }
+
+
+    /*Method to change the background of the selected tabs*/
+    private void tabSelection(int position){
+        switch(position){
+            case 1:
+                viewHome.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.colorAccent));
+                viewElearning.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewFaq.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewhelp.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewHome.setVisibility(View.VISIBLE);
+                viewElearning.setVisibility(View.GONE);
+                viewFaq.setVisibility(View.GONE);
+                viewhelp.setVisibility(View.GONE);
+
+                break;
+            case 2:
+                viewHome.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewElearning.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.colorAccent));
+                viewFaq.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewhelp.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewHome.setVisibility(View.GONE);
+                viewElearning.setVisibility(View.VISIBLE);
+                viewFaq.setVisibility(View.GONE);
+                viewFaq.setVisibility(View.GONE);
+
+                break;
+            case 3:
+                viewHome.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewElearning.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewFaq.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.colorAccent));
+                viewhelp.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewHome.setVisibility(View.GONE);
+                viewElearning.setVisibility(View.GONE);
+                viewFaq.setVisibility(View.VISIBLE);
+                viewhelp.setVisibility(View.GONE);
+
+                break;
+            case 4:
+                viewHome.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewElearning.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewFaq.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.white));
+                viewhelp.setBackgroundColor(ContextCompat.getColor(MainActivity.this,R.color.colorAccent));
+                viewHome.setVisibility(View.GONE);
+                viewElearning.setVisibility(View.GONE);
+                viewFaq.setVisibility(View.GONE);
+                viewhelp.setVisibility(View.VISIBLE);
+
+                break;
+        }
+    }
+
 }
