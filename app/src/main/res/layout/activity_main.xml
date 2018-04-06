@@ -47,22 +47,17 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src = "@mipmap/refer_friend"
-                        />
-                    <!--  <TextView
+                        android:src = "@mipmap/refer_friend" />
 
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text = "@string/tab_home"
-                          />-->
                 </LinearLayout>
+
                 <View
                     android:id ="@+id/view_home"
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
+                    android:visibility="gone"
                     android:background="@color/colorAccent"
-                    android:layout_alignParentBottom="true"
-                    />
+                    android:layout_alignParentBottom="true" />
 
             </RelativeLayout>
 
@@ -80,14 +75,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src = "@mipmap/elearning"
-                        />
-                    <!-- <TextView
-                         style="@style/TabTextStyle"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text = "@string/tab_history"
-                         />-->
+                        android:src = "@mipmap/elearning" />
+
                 </LinearLayout>
                 <View
                     android:id ="@+id/view_elearning"
@@ -112,14 +101,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src = "@mipmap/faq"
-                        />
-                    <!--<TextView
-                        style="@style/TabTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text = "@string/tab_payment"
-                        />-->
+                        android:src = "@mipmap/faq" />
+
                 </LinearLayout>
                 <View
                     android:id ="@+id/view_faq"

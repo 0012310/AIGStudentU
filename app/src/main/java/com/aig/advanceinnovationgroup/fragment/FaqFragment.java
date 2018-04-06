@@ -1,25 +1,20 @@
 package com.aig.advanceinnovationgroup.fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ExpandableListView;
 
 import com.aig.advanceinnovationgroup.R;
-import com.aig.advanceinnovationgroup.activity.AddSkillActivity;
-import com.aig.advanceinnovationgroup.activity.AddUserActivity;
-import com.aig.advanceinnovationgroup.adapter.SkillAdapter;
-import com.aig.advanceinnovationgroup.adapter.UserAdapter;
-import com.aig.advanceinnovationgroup.model.SkillData;
-import com.aig.advanceinnovationgroup.model.UserDetail;
+import com.aig.advanceinnovationgroup.adapter.FaqAdapter;
+import com.aig.advanceinnovationgroup.model.FaqData;
+import com.aig.advanceinnovationgroup.model.FaqsDatum;
 import com.aig.advanceinnovationgroup.util.AppController;
 import com.aig.advanceinnovationgroup.util.AppPreferences;
 import com.aig.advanceinnovationgroup.util.Constant;
@@ -32,10 +27,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,101 +34,77 @@ import java.util.List;
 import java.util.Map;
 
 
-public class FaqFragment extends Fragment implements View.OnClickListener {
+public class FaqFragment extends Fragment {
 
-    String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJJZCI6IjEiLCJyb2xlIjoiU1VQRVJBRE1JTiJ9.II1eEmwbKL8ke2-UAm1mdflIkbe5RZi3I3su0x7Ccn1sAwGOhXnTX38sHrMKzLIZtShv19i9eL9zhreUw8rylg";
-
-    RecyclerView recyclerView;
-    private LinearLayoutManager layoutManager;
-    private List<UserDetail> userDetailList;
-    private Button addUserBT;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        userDetailList = new ArrayList<>();
-
-
-    }
+    private ExpandableListView listView;
+    private List<FaqsDatum> faqsDatumList;
+    private List<String>  headerList;
+    private List<String> childList;
+    FaqAdapter faqAdapter;
+    private Dialog mProgressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_faq, container, false);
+        faqsDatumList = new ArrayList<>();
+        headerList = new ArrayList<>();
+        childList = new ArrayList<>();
         initView(view);
-        skillData();
+        faqData();
+
         return view;
     }
 
     private void initView(View view) {
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv_user);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-
-        addUserBT = (Button) view.findViewById(R.id.btn_add_user);
-        addUserBT.setOnClickListener(this);
+        listView = (ExpandableListView) view.findViewById(R.id.etv_faq);
     }
 
-
-    public void skillData(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://139.59.84.10/HadariOnlineR/rest/hello/allusers", new Response.Listener<String>() {
+    public void faqData(){
+        mProgressDialog = Utils.showProgressDialog(getActivity());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.FAQ_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 Log.d("Response :", response);
-                try {
-                    JSONArray array = new JSONArray(response);
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject jresponse = array.getJSONObject(i);
-                        int id= jresponse.getInt("id");
-                        String userName = jresponse.getString("userName");
-                        String pass = jresponse.getString("password");
-                        String name = jresponse.getString("name");
-                        String role = jresponse.getString("role");
+                Utils.cancelProgressDialog(mProgressDialog);
+                Gson gson = new Gson();
+                JsonReader reader = new JsonReader(new StringReader(response));
+                reader.setLenient(true);
+                FaqData faqData = gson.fromJson(reader, FaqData.class);
+                int status = faqData.getStatus();
+                if (status==1) {
+                    faqsDatumList = faqData.getFaqsData();
 
-                        UserDetail  detail = new UserDetail(id, userName, pass, name, role);
+                    for (int i = 0; i < faqsDatumList.size(); i++) {
+                        headerList.add(faqsDatumList.get(i).getSn()+". "+faqsDatumList.get(i).getTitle());
+                        childList.add(faqsDatumList.get(i).getDescription());
 
-                        userDetailList.add(detail);
-                        recyclerView.setAdapter(new UserAdapter(getActivity(), userDetailList));
-
+                        faqAdapter = new FaqAdapter(getActivity(), headerList, childList);
+                        listView.setAdapter(faqAdapter);
                     }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
                 }
-
-
-
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Utils.cancelProgressDialog(mProgressDialog);
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> param = new HashMap<>();
+                param.put("student_id", AppPreferences.getString(getActivity(), AppPreferences.PREF_KEY.STUDENT_ID));
 
-                HashMap<String, String> map = new HashMap<>();
-                map.put("Authorization", "Token "+ token);
-                return map;
+                return param;
             }
-
-
         };
         AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_add_user:
-                Intent intent = new Intent(getActivity(), AddUserActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
+
+
 }
