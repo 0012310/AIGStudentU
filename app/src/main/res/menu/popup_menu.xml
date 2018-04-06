@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@mipmap/manage_profile"
+        android:title="Manage Profile"/>
+
+    <item
+        android:id="@+id/password"
+        android:icon="@mipmap/lock"
+        android:title="Change Password"/>
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@mipmap/log"
+        android:title="Logout" />
+
+
+
+</menu>

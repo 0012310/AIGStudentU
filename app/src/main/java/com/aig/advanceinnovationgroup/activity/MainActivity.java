@@ -1,5 +1,7 @@
 package com.aig.advanceinnovationgroup.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -8,12 +10,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.fragment.AddNewComplaintFragment;
@@ -33,6 +39,7 @@ import com.aig.advanceinnovationgroup.fragment.ViewComplaintFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewFinalExamFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewIncidentFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewProjectFragment;
+import com.aig.advanceinnovationgroup.util.AppPreferences;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -448,16 +455,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.rl_home:
                 tabSelection(1);
-                changeFragment(17);
+
                 break;
             case R.id.rl_elearning:
                 tabSelection(2);
                 break;
             case R.id.rl_faq:
                 tabSelection(3);
+                changeFragment(17);
                 break;
             case R.id.rl_help:
                 tabSelection(4);
+                openPopupWindow(helpRL);
                 break;
 
 
@@ -513,6 +522,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
         }
+    }
+
+
+    public void openPopupWindow(RelativeLayout viewhelp){
+     /*   final View view = new View(MainActivity.this);
+        view.setLayoutParams(new ViewGroup.LayoutParams(1, 1));
+        view.setBackgroundColor(Color.TRANSPARENT);
+
+        viewhelp.addView(view);
+
+        view.setX(x);
+        view.setY(y);*/
+
+        PopupMenu popup = new PopupMenu(MainActivity.this, viewhelp);
+        //Inflating the Popup using xml file
+        popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+
+        //registering popup with OnMenuItemClickListener
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+               switch (item.getItemId()){
+                   case R.id.profile:
+                       changeFragment(15);
+                       break;
+                   case R.id.password:
+                       Intent intent1 = new Intent(MainActivity.this, ChangePasswordActivity.class);
+                       startActivity(intent1);
+                       break;
+                   case R.id.logout:
+                       AppPreferences.clearAllPreferences(MainActivity.this);
+                       Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                       startActivity(intent);
+                       finish();
+                       break;
+
+               }
+                return true;
+            }
+        });
+
+        popup.show();//showing popup menu
     }
 
 }
