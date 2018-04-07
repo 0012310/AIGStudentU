@@ -43,8 +43,6 @@ import java.util.Map;
 
 public class ViewComplaintFragment extends Fragment {
 
-
-    private WebView webView;
     private ExpandableListView listView;
     private Dialog mProgressDialog;
     private List<ComplaintDetsils> listHeader;
@@ -105,8 +103,6 @@ public class ViewComplaintFragment extends Fragment {
                             String rca = jsonObject.getString("rca");
                             String recommended_action = jsonObject.getString("recommended_action");
                             String status_msg = jsonObject.getString("status_msg");
-
-
 
                             ComplaintDetsils detsils = new ComplaintDetsils(complaint_type, complaint_date);
                             ComplaintDetsils complaintDetsils = new ComplaintDetsils(complaint_type,complaint_id, reply_id, message, status1, allocated_to, assign_to, assign_date,
