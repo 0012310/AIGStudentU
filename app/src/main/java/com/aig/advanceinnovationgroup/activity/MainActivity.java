@@ -29,6 +29,7 @@ import com.aig.advanceinnovationgroup.fragment.AddPraparatoryExamFragment;
 import com.aig.advanceinnovationgroup.fragment.CustomerVoiceFragment;
 import com.aig.advanceinnovationgroup.fragment.DashboardFragment;
 import com.aig.advanceinnovationgroup.fragment.DownloadFragment;
+import com.aig.advanceinnovationgroup.fragment.ElearningFragment;
 import com.aig.advanceinnovationgroup.fragment.FaqFragment;
 import com.aig.advanceinnovationgroup.fragment.FeeDetailFragment;
 import com.aig.advanceinnovationgroup.fragment.MyProfileFragment;
@@ -209,7 +210,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 FragmentTransaction faqTransaction = fragmentManager.beginTransaction();
                 faqTransaction.replace(R.id.container, faqFragment);
                 faqTransaction.commit();
-                getSupportActionBar().setTitle("Social Share");
+                getSupportActionBar().setTitle("FAQ");
+                break;
+
+            case 18:
+                ElearningFragment elearningFragment = new ElearningFragment();
+                FragmentTransaction leaarningTransaction = fragmentManager.beginTransaction();
+                leaarningTransaction.replace(R.id.container, elearningFragment);
+                leaarningTransaction.commit();
+                getSupportActionBar().setTitle("E-Learning");
                 break;
 
         }
@@ -459,6 +468,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.rl_elearning:
                 tabSelection(2);
+                changeFragment(18);
                 break;
             case R.id.rl_faq:
                 tabSelection(3);

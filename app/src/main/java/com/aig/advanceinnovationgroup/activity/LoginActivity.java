@@ -86,6 +86,7 @@ public class LoginActivity extends BaseActivity  implements View.OnClickListener
                 AppPreferences.putString(LoginActivity.this, AppPreferences.PREF_KEY.EMAIL, loginResponse.getEmail());
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         }, new Response.ErrorListener() {

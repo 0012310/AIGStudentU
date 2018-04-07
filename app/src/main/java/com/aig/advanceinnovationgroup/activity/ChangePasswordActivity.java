@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.util.AppController;
@@ -26,6 +27,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.StringReader;
 import java.util.HashMap;
@@ -68,6 +72,21 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             public void onResponse(String response) {
 
                 Log.d("Response :", response);
+
+                try {
+                    JSONObject object = new JSONObject(response);
+                    int status = object.getInt("status");
+                    if (status==1){
+                        Toast.makeText(ChangePasswordActivity.this, object.getString("change_password"), Toast.LENGTH_SHORT).show();
+                    }else if (status==2){
+                        Toast.makeText(ChangePasswordActivity.this, object.getString("change_password"), Toast.LENGTH_SHORT).show();
+                    }else if (status==3){
+                        Toast.makeText(ChangePasswordActivity.this, object.getString("change_password"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 finish();
 
