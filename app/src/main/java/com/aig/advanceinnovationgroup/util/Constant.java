@@ -51,6 +51,8 @@ public class Constant {
     public static final String VIEW_LANGUAGE_URL =BASE_URL+ "language_known_listing";
     public static final String UPLOAD_RESUME_URL =BASE_URL+ "resume_upload";
     public static final String EDUCATION_URL =BASE_URL+  "view_education";
-    public static final String FAQ_URL =BASE_URL+  "faqs";
-    public static final String CHANGE_PASSWORD_URL =BASE_URL+  "change_password";
+    public static final String FAQ_URL =BASE_URL+"faqs";
+    public static final String CHANGE_PASSWORD_URL =BASE_URL+"change_password";
+    public static final String COMPLAINT_TYPE_URL =BASE_URL+"complaint_type";
+    public static final String ADD_COMPLAINT_URL =BASE_URL+"add_complaint";
 }
