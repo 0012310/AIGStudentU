@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 1:
                 proceed();
                 break;
+
             case 2:
                 ViewAttendanceFragment viewAttendanceFragment = new ViewAttendanceFragment();
                 FragmentTransaction orderTransaction = fragmentManager.beginTransaction();
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 orderTransaction.commit();
                 getSupportActionBar().setTitle("View Attendance");
                 break;
+
             case 3:
                 FeeDetailFragment feeDetailFragment = new FeeDetailFragment();
                 FragmentTransaction feeTransaction = fragmentManager.beginTransaction();
@@ -221,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 leaarningTransaction.commit();
                 getSupportActionBar().setTitle("E-Learning");
                 break;
+
             case 19:
                 ReferFriendFragment referFriendFragment = new ReferFriendFragment();
                 FragmentTransaction refFrndTransaction = fragmentManager.beginTransaction();
