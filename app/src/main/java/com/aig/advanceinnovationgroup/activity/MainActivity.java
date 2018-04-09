@@ -40,6 +40,7 @@ import com.aig.advanceinnovationgroup.fragment.ViewAttendanceFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewComplaintFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewFinalExamFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewIncidentFragment;
+import com.aig.advanceinnovationgroup.fragment.ViewPreparatoryExamFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewProjectFragment;
 import com.aig.advanceinnovationgroup.util.AppPreferences;
 
@@ -169,11 +170,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case 12:
-                ViewFinalExamFragment finalExamFragment = new ViewFinalExamFragment();
+                ViewPreparatoryExamFragment finalExamFragment = new ViewPreparatoryExamFragment();
                 FragmentTransaction viewExamTransaction = fragmentManager.beginTransaction();
                 viewExamTransaction.replace(R.id.container, finalExamFragment);
                 viewExamTransaction.commit();
-                getSupportActionBar().setTitle("View Final Exam");
+                getSupportActionBar().setTitle("View Preparatory Exam");
                 break;
 
             case 13:

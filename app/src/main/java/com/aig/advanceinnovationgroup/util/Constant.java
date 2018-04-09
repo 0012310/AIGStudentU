@@ -56,4 +56,5 @@ public class Constant {
     public static final String COMPLAINT_TYPE_URL =BASE_URL+"complaint_type";
     public static final String ADD_COMPLAINT_URL =BASE_URL+"add_complaint";
     public static final String VIEW_COMPLAINT_URL =BASE_URL+"view_complaint";
+    public static final String FINAL_EXAM_URL =BASE_URL+ "final_exam";
 }
