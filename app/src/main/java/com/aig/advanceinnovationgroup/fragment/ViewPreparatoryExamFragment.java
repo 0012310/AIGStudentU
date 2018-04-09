@@ -69,7 +69,7 @@ public class ViewPreparatoryExamFragment extends Fragment {
 
     public void finalExamView(){
         mProgressDialog = Utils.showProgressDialog(getActivity());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.FINAL_EXAM_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.VIEW_PREPA_EXAM_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -78,7 +78,7 @@ public class ViewPreparatoryExamFragment extends Fragment {
                 PrepaExamData prepaExamData = new Gson().fromJson(response, PrepaExamData.class);
                 int status = prepaExamData.getStatus();
                 if (status==1){
-                    examDetailList = prepaExamData.getExamDetails();
+                    examDetailList = prepaExamData.getAddExam();
 
                     prepaExamRV.setAdapter(new PrepaExamAdapter(getActivity(), examDetailList));
                 }

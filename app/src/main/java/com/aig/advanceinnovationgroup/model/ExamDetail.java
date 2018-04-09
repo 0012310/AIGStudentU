@@ -142,4 +142,5 @@ public class ExamDetail {
     public void setScoreAttempted(String scoreAttempted) {
         this.scoreAttempted = scoreAttempted;
     }
+
 }

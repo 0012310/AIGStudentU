@@ -10,13 +10,12 @@ import java.util.List;
  */
 
 public class PrepaExamData {
-
     @SerializedName("status")
     @Expose
     private Integer status;
-    @SerializedName("exam_details")
+    @SerializedName("add_exam")
     @Expose
-    private List<ExamDetail> examDetails = null;
+    private List<ExamDetail> addExam = null;
 
     public Integer getStatus() {
         return status;
@@ -26,11 +25,11 @@ public class PrepaExamData {
         this.status = status;
     }
 
-    public List<ExamDetail> getExamDetails() {
-        return examDetails;
+    public List<ExamDetail> getAddExam() {
+        return addExam;
     }
 
-    public void setExamDetails(List<ExamDetail> examDetails) {
-        this.examDetails = examDetails;
+    public void setAddExam(List<ExamDetail> addExam) {
+        this.addExam = addExam;
     }
 }
