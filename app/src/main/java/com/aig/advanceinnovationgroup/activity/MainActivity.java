@@ -34,6 +34,7 @@ import com.aig.advanceinnovationgroup.fragment.FaqFragment;
 import com.aig.advanceinnovationgroup.fragment.FeeDetailFragment;
 import com.aig.advanceinnovationgroup.fragment.MyProfileFragment;
 import com.aig.advanceinnovationgroup.fragment.PayFeeFragment;
+import com.aig.advanceinnovationgroup.fragment.ReferFriendFragment;
 import com.aig.advanceinnovationgroup.fragment.SocialShareFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewAttendanceFragment;
 import com.aig.advanceinnovationgroup.fragment.ViewComplaintFragment;
@@ -219,6 +220,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 leaarningTransaction.replace(R.id.container, elearningFragment);
                 leaarningTransaction.commit();
                 getSupportActionBar().setTitle("E-Learning");
+                break;
+            case 19:
+                ReferFriendFragment referFriendFragment = new ReferFriendFragment();
+                FragmentTransaction refFrndTransaction = fragmentManager.beginTransaction();
+                refFrndTransaction.replace(R.id.container, referFriendFragment);
+                refFrndTransaction.commit();
+                getSupportActionBar().setTitle("Refer a Friend");
                 break;
 
         }
@@ -464,7 +472,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.rl_home:
                 tabSelection(1);
-
+                changeFragment(19);
                 break;
             case R.id.rl_elearning:
                 tabSelection(2);
