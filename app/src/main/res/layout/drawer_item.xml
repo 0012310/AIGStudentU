@@ -38,8 +38,7 @@
             android:text="Dashboard"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
     </LinearLayout>
@@ -57,8 +56,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/attendance"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_view_attendance"
@@ -88,8 +86,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/ic_fee_manage"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_fee_management"
@@ -100,8 +97,7 @@
             android:text="Fee Management"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <ImageView
             android:id="@+id/iv_arrow"
@@ -132,8 +128,7 @@
             android:text="Fee Details"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
@@ -145,8 +140,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
     </LinearLayout>
@@ -165,8 +159,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/download"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_download"
@@ -195,8 +188,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/discussion"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_project_communication"
@@ -207,8 +199,7 @@
             android:text="Project Communication"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <ImageView
             android:id="@+id/iv_arrow_project"
@@ -239,8 +230,7 @@
             android:text="Add New Project"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
@@ -252,8 +242,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
     </LinearLayout>
@@ -273,8 +262,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/support"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_customer_voice"
@@ -284,8 +272,7 @@
             android:text="Customer Voice"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
     </LinearLayout>
@@ -305,8 +292,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/manager"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_incident_manager"
@@ -317,8 +303,7 @@
             android:text="Incident Manager"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <ImageView
             android:id="@+id/iv_arrow_incident"
@@ -352,9 +337,7 @@
             android:text="Add New Incident"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
-
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_view_incident"
@@ -365,8 +348,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
     </LinearLayout>
@@ -385,8 +367,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/assessment"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_assessment"
@@ -397,8 +378,7 @@
             android:text="Assessment"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
         <ImageView
             android:id="@+id/iv_arrow_assessment"
             android:layout_width="@dimen/margin_20"
@@ -430,8 +410,7 @@
             android:text="Add Preparatory Exam"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
@@ -443,8 +422,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_view_final_exam"
@@ -455,8 +433,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
     </LinearLayout>
@@ -488,6 +465,7 @@
             android:text="Complaint Manager"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_16" />
+
         <ImageView
             android:id="@+id/iv_arrow_complaint"
             android:layout_width="@dimen/margin_20"
@@ -531,8 +509,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_marginLeft="@dimen/margin_30"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
     </LinearLayout>
@@ -551,8 +528,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/user"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_profile"
@@ -562,8 +538,7 @@
             android:text="My Profile"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
 
     </LinearLayout>
@@ -581,8 +556,7 @@
             android:layout_height="@dimen/margin_20"
             android:layout_marginLeft="@dimen/margin_10"
             android:src="@mipmap/share"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
         <com.aig.advanceinnovationgroup.customView.RobotoRegularTextView
             android:id="@+id/tv_social_share"
@@ -592,9 +566,7 @@
             android:text="Social Share"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_gravity="center_vertical"
-            />
-
+            android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 
