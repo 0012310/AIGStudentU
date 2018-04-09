@@ -13,11 +13,12 @@ import android.widget.LinearLayout;
 
 import com.aig.advanceinnovationgroup.R;
 import com.aig.advanceinnovationgroup.activity.ArticlesActivity;
+import com.aig.advanceinnovationgroup.activity.MainActivity;
 
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 
-    private CardView cv_article, cv_discussion, cv_project, cv_video, cv_job;
+    private CardView cv_article, cv_discussion, cv_project, cv_video, cv_job, cv_help;
 
 
     @Override
@@ -43,12 +44,14 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         cv_project = (CardView) view.findViewById(R.id.cv_project);
         cv_video = (CardView) view.findViewById(R.id.cv_video);
         cv_job = (CardView) view.findViewById(R.id.cv_job);
+        cv_help = (CardView) view.findViewById(R.id.cv_help);
 
         cv_article.setOnClickListener(this);
         cv_discussion.setOnClickListener(this);
         cv_project.setOnClickListener(this);
         cv_video.setOnClickListener(this);
         cv_job.setOnClickListener(this);
+        cv_help.setOnClickListener(this);
     }
 
     @Override
@@ -78,6 +81,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 Intent intent4 = new Intent(getActivity(), ArticlesActivity.class);
                 intent4.putExtra("article", "job");
                 startActivity(intent4);
+                break;
+            case R.id.cv_help:
+                ((MainActivity)getActivity()).changeFragment(17);
                 break;
         }
     }
